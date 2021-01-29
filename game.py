@@ -43,25 +43,15 @@ def event():
                 space = 0
     player.handle_movements(pygame.key.get_pressed)
 
-def old():
-    screen.blit(maps.black, (0, 0))
-    screen.blit(maps.little_white_corner, (1030, 470))
-    screen.blit(maps.little_white, (1180, 210))
-
-def child():
-    screen.blit(maps.white, (0, 0))
-    screen.blit(maps.little_black, (1030, 470))
-    screen.blit(maps.little_black, (1030, 0))
-
 def game():
     while running:
         clock.tick(60)
         screen.fill((0, 0, 0))
         event()
         if space == 0:
-            child()
+            maps.child(screen)
         else:
-            old()
+            maps.old(screen)
         player.update(screen)
         pygame.display.flip()
 
