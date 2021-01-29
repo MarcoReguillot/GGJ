@@ -33,8 +33,8 @@ class Player(pygame.sprite.Sprite):
         screen.blit(self.current_image, (self.x, self.y))
 
     #deplacements
-    def go_left(self, speed):
-        self.actual_speed[0] = -speed
+    def go_left(self):
+        self.actual_speed[0] = -self.speed
 
     def go_right(self):
         self.actual_speed[0] = self.speed

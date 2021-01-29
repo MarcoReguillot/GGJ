@@ -3,6 +3,7 @@ from os import environ
 environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 import pygame, pyglet
 from pygame.locals import *
+from player import Player
 
 pygame.init()
 
@@ -29,6 +30,9 @@ little_white = pygame.transform.scale(pygame.image.load('assets/white.jpg'), (10
 black = pygame.image.load('assets/black.jpg')
 little_black = pygame.transform.scale(pygame.image.load('assets/black.jpg'), (250, 250))
 
+#Player creation
+player = Player()
+
 running = True
 
 def event():
@@ -42,6 +46,7 @@ def event():
                 space = 1
             else:
                 space = 0
+    player.handle_movements(pygame.key.get_pressed)
 
 def old():
     screen.blit(black, (0, 0))
@@ -62,6 +67,7 @@ def game():
             child()
         else:
             old()
+        player.update(screen)
         pygame.display.flip()
 
 game()
