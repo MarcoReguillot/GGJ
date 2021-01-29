@@ -31,8 +31,8 @@ maps = Map()
 running = True
 
 def collide(character, obj):
-    character.left = (1280 - character.width) / 2
-    character.top = (720 - character.height) / 2
+    character.left = (1280 - character.width) / 2 + 15
+    character.top = (720 - character.height) / 2 + 15
     if obj.contains(character) == 1:
         return (1)
     return (0)
@@ -67,6 +67,10 @@ def event():
                     space = 1
                 else:
                     space = 0
+            else:
+                sound = pygame.mixer.Sound("assets/stop.wav")
+                sound.set_volume(0.1)
+                sound.play()
     player.handle_movements(pygame.key.get_pressed)
 
 def game():
