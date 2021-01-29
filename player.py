@@ -29,21 +29,54 @@ class Player(pygame.sprite.Sprite):
             (pygame.K_LEFT, self.go_left),
             (pygame.K_RIGHT, self.go_right)
         }
-        self.idle = pygame.image.load("assets/character.png")
-        self.idle = pygame.transform.scale(self.idle, (100, 100))
         self.rotation = 0
-        self.rect = self.idle.get_rect()
         self.x = 0
         self.y = 0
         self.animation = create_animation("assets/character/", 3, ".png", (100, 100))
+        self.rect = self.animation[0].get_rect()
         self.current_animation = 0
         self.animation_speed = 0.2
         self.speed = 10
         self.rotation_speed = 20
         self.actual_speed = [0, 0]
         self.stop_speed = 1.5
-        self.current_image = self.idle
+        self.current_image = self.animation[0]
+        self.temp_null_objects = []
         #self.walk_anim = create_animation("assets/character/walk/", 1, "assets")
+
+    def collision_down(self, objects):
+        rect = self.rect
+        rect.y += rect.y * 3 / 4
+        rect.width /= 4
+        for i in objects:
+            if not i.contains(rect):
+                return (True)
+        return (False)
+
+    def collision_up(self, objects):
+        rect = self.rect
+        rect.height /= 4
+        for i in objects:
+            if not i.contains(rect):
+                return (True)
+        return (False)
+
+    def collision_right(self, objects):
+        rect = self.rect
+        rect.x += rect.x / 4
+        rect.width /= 4
+        for i in objects:
+            if not i.contains(rect):
+                return (True)
+        return (False)
+
+    def collision_left(self, objects):
+        rect = self.rect
+        rect.width /= 4
+        for i in objects:
+            if not i.contains(rect):
+                return (True)
+        return (False)
 
     def update_animation(self):
         if (self.actual_speed[0] == 0 and self.actual_speed[1] == 0):
@@ -60,8 +93,13 @@ class Player(pygame.sprite.Sprite):
 
     def update(self, screen):
         #updating position
-        self.x += self.actual_speed[0]
-        self.y += self.actual_speed[1]
+        if ((self.actual_speed[0] < 0 and not self.collision_left(self.temp_null_objects)) or
+            (self.actual_speed[0] > 0 and not self.collision_right(self.temp_null_objects))):
+            self.x += self.actual_speed[0]
+        if ((self.actual_speed[1] < 0 and not self.collision_up(self.temp_null_objects)) or
+            (self.actual_speed[1] > 0 and not self.collision_down(self.temp_null_objects))):
+            self.y += self.actual_speed[1]
+        self.rect = self.animation[0].get_rect()
         #render character
         self.update_animation()
         self.current_image = pygame.transform.rotate(self.current_image, self.rotation)
