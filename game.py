@@ -4,6 +4,7 @@ environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 import pygame, pyglet
 from pygame.locals import *
 from player import Player
+from map_class import Map
 
 pygame.init()
 
@@ -21,17 +22,11 @@ screen = pygame.display.set_mode((size))
 #mouse
 pygame.mouse.set_cursor(*pygame.cursors.diamond)
 
-#white
-white = pygame.image.load('assets/white.jpg')
-little_white_corner = pygame.transform.scale(pygame.image.load('assets/white.jpg'), (250, 250))
-little_white = pygame.transform.scale(pygame.image.load('assets/white.jpg'), (100, 300))
-
-#black
-black = pygame.image.load('assets/black.jpg')
-little_black = pygame.transform.scale(pygame.image.load('assets/black.jpg'), (250, 250))
-
 #Player creation
 player = Player()
+
+#Map creation
+maps = Map()
 
 running = True
 
@@ -49,14 +44,14 @@ def event():
     player.handle_movements(pygame.key.get_pressed)
 
 def old():
-    screen.blit(black, (0, 0))
-    screen.blit(little_white_corner, (1030, 470))
-    screen.blit(little_white, (1180, 210))
+    screen.blit(maps.black, (0, 0))
+    screen.blit(maps.little_white_corner, (1030, 470))
+    screen.blit(maps.little_white, (1180, 210))
 
 def child():
-    screen.blit(white, (0, 0))
-    screen.blit(little_black, (1030, 470))
-    screen.blit(little_black, (1030, 0))
+    screen.blit(maps.white, (0, 0))
+    screen.blit(maps.little_black, (1030, 470))
+    screen.blit(maps.little_black, (1030, 0))
 
 def game():
     while running:
