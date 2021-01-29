@@ -15,11 +15,11 @@ class Player(pygame.sprite.Sprite):
             (pygame.K_RIGHT, self.go_right)
         }
         self.idle = pygame.image.load("assets/character.png")
+        self.idle = pygame.transform.scale(self.idle, (100, 100))
         self.rect = self.idle.get_rect()
         self.x = 1280 / 2
         self.y = 720 / 2
         self.speed = 10
-        self.idle = pygame.transform.scale(self.idle, (100, 100))
         self.actual_speed = [0, 0]
         self.stop_speed = 2
         self.current_image = self.idle
@@ -30,29 +30,30 @@ class Player(pygame.sprite.Sprite):
         self.x += self.actual_speed[0]
         self.y += self.actual_speed[1]
         #render character
-        screen.blit(self.current_image, (self.x, self.y))
+        screen.blit(self.current_image, (1280 / 2, 720 / 2))
 
     #deplacements
-    def go_left(self):
-        self.actual_speed[0] = -self.speed
+    def go_left(self, speed):
+        self.actual_speed[0] = -speed
 
-    def go_right(self):
-        self.actual_speed[0] = self.speed
+    def go_right(self, speed):
+        self.actual_speed[0] = speed
 
-    def go_up(self):
-        self.actual_speed[1] = -self.speed
+    def go_up(self, speed):
+        self.actual_speed[1] = -speed
 
-    def go_down(self):
-        self.actual_speed[1] = self.speed
+    def go_down(self, speed):
+        self.actual_speed[1] = speed
 
     def handle_movements(self, keys_pressed):
-        movement = False
+        movements = []
 
         for i in self.controls:
             if keys_pressed()[i[0]]:
-                i[1]()
-                movement = True
-        if not movement:
+                movements.append(i[1])
+        if len(movements) == 0:
             self.actual_speed[0] = 0
             self.actual_speed[1] = 0
-
+        else:
+            for i in movements:
+                i(self.speed / len(movements))
