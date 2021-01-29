@@ -2,8 +2,9 @@
 # Player object
 
 import pygame
-import animations
+from animations import create_animation
 import random
+import math
 
 def get_nearest(value, goal1, goal2):
     if (value == goal1 or value == goal2):
@@ -34,6 +35,9 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.idle.get_rect()
         self.x = 0
         self.y = 0
+        self.animation = create_animation("assets/character/", 3, ".png", (100, 100))
+        self.current_animation = 0
+        self.animation_speed = 0.2
         self.speed = 10
         self.rotation_speed = 20
         self.actual_speed = [0, 0]
@@ -41,12 +45,26 @@ class Player(pygame.sprite.Sprite):
         self.current_image = self.idle
         #self.walk_anim = create_animation("assets/character/walk/", 1, "assets")
 
+    def update_animation(self):
+        if (self.actual_speed[0] == 0 and self.actual_speed[1] == 0):
+            self.current_image = self.animation[1]
+            return
+        self.current_animation += self.animation_speed
+        if (self.current_animation < 3):
+            self.current_image = self.animation[math.floor(self.current_animation)]
+        elif(self.current_animation < 4):
+            self.current_image = self.animation[1]
+        else:
+            self.current_animation = 0
+            self.current_image = self.animation[0]
+
     def update(self, screen):
         #updating position
         self.x += self.actual_speed[0]
         self.y += self.actual_speed[1]
         #render character
-        self.current_image = pygame.transform.rotate(self.idle, self.rotation)
+        self.update_animation()
+        self.current_image = pygame.transform.rotate(self.current_image, self.rotation)
         screen.blit(self.current_image, ((1280 - self.rect.width) / 2, (720 - self.rect.height) / 2))
 
     #deplacements
