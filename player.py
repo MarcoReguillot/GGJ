@@ -30,7 +30,7 @@ class Player(pygame.sprite.Sprite):
         self.x += self.actual_speed[0]
         self.y += self.actual_speed[1]
         #render character
-        screen.blit(self.current_image, (1280 / 2, 720 / 2))
+        screen.blit(self.current_image, ((1280 - self.rect.width) / 2, (720 - self.rect.height) / 2))
 
     #deplacements
     def go_left(self, speed):
@@ -47,13 +47,18 @@ class Player(pygame.sprite.Sprite):
 
     def handle_movements(self, keys_pressed):
         movements = []
-
+        y = False
+        x = False
         for i in self.controls:
             if keys_pressed()[i[0]]:
+                if (i[0] == pygame.K_UP or i[0] == pygame.K_DOWN):
+                    y = not y
+                else:
+                    x = not x
                 movements.append(i[1])
-        if len(movements) == 0:
+        for i in movements:
+            i(self.speed / len(movements))
+        if (x == False):
             self.actual_speed[0] = 0
+        if (y == False):
             self.actual_speed[1] = 0
-        else:
-            for i in movements:
-                i(self.speed / len(movements))
