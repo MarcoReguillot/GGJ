@@ -17,8 +17,8 @@ class Player(pygame.sprite.Sprite):
         self.idle = pygame.image.load("assets/character.png")
         self.idle = pygame.transform.scale(self.idle, (100, 100))
         self.rect = self.idle.get_rect()
-        self.x = 1280 / 2
-        self.y = 720 / 2
+        self.x = 0
+        self.y = 0
         self.speed = 10
         self.actual_speed = [0, 0]
         self.stop_speed = 2
