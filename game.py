@@ -30,6 +30,31 @@ maps = Map()
 
 running = True
 
+def collide(character, obj):
+    character.left = (1280 - character.width) / 2
+    character.top = (720 - character.height) / 2
+    if obj.contains(character) == 1:
+        return (1)
+    return (0)
+
+def change_space(space):
+    maps.old(player.x, player.y)
+    maps.child(player.x, player.y)
+    if space == 0:
+        if collide(player.rect, maps.little_white_corner_rect) == 1:
+            return (1)
+        elif collide(player.rect, maps.little_white_rect) == 1:
+            return (1)
+        else:
+            return (0)
+    else:
+        if collide(player.rect, maps.little_black_1_rect) == 1:
+            return (1)
+        elif collide(player.rect, maps.little_black_2_rect) == 1:
+            return (1)
+        else:
+            return (0)
+
 def event():
     global space
     global running
@@ -37,10 +62,11 @@ def event():
         if event.type == QUIT:
             running = False
         elif event.type == KEYDOWN and pygame.key.get_pressed()[pygame.K_SPACE]:
-            if space == 0:
-                space = 1
-            else:
-                space = 0
+            if change_space(space) == 1:
+                if space == 0:
+                    space = 1
+                else:
+                    space = 0
     player.handle_movements(pygame.key.get_pressed)
 
 def game():
@@ -49,9 +75,9 @@ def game():
         screen.fill((0, 0, 0))
         event()
         if space == 0:
-            maps.child(screen)
+            maps.child_display(screen, player.x, player.y)
         else:
-            maps.old(screen)
+            maps.old_display(screen, player.x, player.y)
         player.update(screen)
         pygame.display.flip()
 
