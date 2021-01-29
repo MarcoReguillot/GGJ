@@ -16,6 +16,7 @@ class Player(pygame.sprite.Sprite):
         }
         self.idle = pygame.image.load("assets/character.png")
         self.idle = pygame.transform.scale(self.idle, (100, 100))
+        self.rotation = 0
         self.rect = self.idle.get_rect()
         self.x = 0
         self.y = 0
@@ -30,6 +31,7 @@ class Player(pygame.sprite.Sprite):
         self.x += self.actual_speed[0]
         self.y += self.actual_speed[1]
         #render character
+        self.current_image = pygame.transform.rotate(self.idle, self.rotation)
         screen.blit(self.current_image, ((1280 - self.rect.width) / 2, (720 - self.rect.height) / 2))
 
     #deplacements
@@ -60,6 +62,14 @@ class Player(pygame.sprite.Sprite):
         movements = []
         y = False
         x = False
+        if keys_pressed()[pygame.K_UP]:
+            self.rotation = 0
+        elif keys_pressed()[pygame.K_RIGHT]:
+            self.rotation = -90
+        elif keys_pressed()[pygame.K_LEFT]:
+            self.rotation = 90
+        elif keys_pressed()[pygame.K_DOWN]:
+            self.rotation = 180
         for i in self.controls:
             if keys_pressed()[i[0]]:
                 if (i[0] == pygame.K_UP or i[0] == pygame.K_DOWN):
