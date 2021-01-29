@@ -77,7 +77,6 @@ class Player(pygame.sprite.Sprite):
         movements = []
         y = False
         x = False
-        print(self.rotation)
         if keys_pressed()[pygame.K_UP]:
             self.rotation = self.go_to_value(self.rotation, self.rotation_speed, get_nearest(self.rotation, 0, 360))
             if (self.rotation == 360):
