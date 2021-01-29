@@ -21,7 +21,7 @@ class Player(pygame.sprite.Sprite):
         self.y = 0
         self.speed = 10
         self.actual_speed = [0, 0]
-        self.stop_speed = 2
+        self.stop_speed = 1.5
         self.current_image = self.idle
         #self.walk_anim = create_animation("assets/character/walk/", 1, "assets")
 
@@ -45,6 +45,17 @@ class Player(pygame.sprite.Sprite):
     def go_down(self, speed):
         self.actual_speed[1] = speed
 
+    def decelerate(self, speed):
+        if (speed > 0):
+            speed -= self.stop_speed
+            if (speed < 0):
+                speed = 0
+        elif (speed < 0):
+            speed += self.stop_speed
+            if (speed > 0):
+                speed = 0
+        return (speed)
+
     def handle_movements(self, keys_pressed):
         movements = []
         y = False
@@ -59,6 +70,6 @@ class Player(pygame.sprite.Sprite):
         for i in movements:
             i(self.speed / len(movements))
         if (x == False):
-            self.actual_speed[0] = 0
+            self.actual_speed[0] = self.decelerate(self.actual_speed[0])
         if (y == False):
-            self.actual_speed[1] = 0
+            self.actual_speed[1] = self.decelerate(self.actual_speed[1])
