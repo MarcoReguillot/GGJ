@@ -129,26 +129,39 @@ class Player(pygame.sprite.Sprite):
                 value = goal
         return (value)
 
+    def set_rotation(self, default, alternative):
+        self.rotation = self.go_to_value(self.rotation, self.rotation_speed,
+            get_nearest(self.rotation, default, alternative))
+        if (self.rotation == alternative):
+            self.rotation = default
+
     def handle_movements(self, keys_pressed):
         movements = []
         y = False
         x = False
         if keys_pressed()[pygame.K_UP]:
-            self.rotation = self.go_to_value(self.rotation, self.rotation_speed, get_nearest(self.rotation, 0, 360))
-            if (self.rotation == 360):
-                self.rotation = 0
+            if keys_pressed()[pygame.K_RIGHT]:
+                self.set_rotation(-45, 315)
+            elif keys_pressed()[pygame.K_LEFT]:
+                self.set_rotation(45, -315)
+            else:
+                self.set_rotation(0, 360)
         elif keys_pressed()[pygame.K_RIGHT]:
-            self.rotation = self.go_to_value(self.rotation, self.rotation_speed, get_nearest(self.rotation, 270, -90))
-            if (self.rotation == -90):
-                self.rotation = 270
+            if keys_pressed()[pygame.K_UP]:
+                self.set_rotation(-45, 315)
+            elif keys_pressed()[pygame.K_DOWN]:
+                self.set_rotation(225, -225)
+            else:
+                self.set_rotation(270, -90)
         elif keys_pressed()[pygame.K_LEFT]:
-            self.rotation = self.go_to_value(self.rotation, self.rotation_speed, get_nearest(self.rotation, 90, -270))
-            if (self.rotation == -270):
-                self.rotation = 90
+            if keys_pressed()[pygame.K_UP]:
+                self.set_rotation(45, -315)
+            elif keys_pressed()[pygame.K_DOWN]:
+                self.set_rotation(135, -225)
+            else:
+                self.set_rotation(90, -270)
         elif keys_pressed()[pygame.K_DOWN]:
-            self.rotation = self.go_to_value(self.rotation, self.rotation_speed, get_nearest(self.rotation, 180, -180))
-            if (self.rotation == -180):
-                self.rotation = 180
+            self.set_rotation(180, -180)
         for i in self.controls:
             if keys_pressed()[i[0]]:
                 if (i[0] == pygame.K_UP or i[0] == pygame.K_DOWN):
@@ -156,6 +169,8 @@ class Player(pygame.sprite.Sprite):
                 else:
                     x = not x
                 movements.append(i[1])
+                if (len(movements) == 2):
+                    break
         for i in movements:
             i(self.speed / len(movements))
         if (x == False):
