@@ -5,8 +5,15 @@ import pygame
 import animations
 
 class Player(pygame.sprite.Sprite):
+
     def __init__(self):
         super().__init__
+        self.controls = {
+            (pygame.K_UP, self.go_up),
+            (pygame.K_DOWN ,self.go_down),
+            (pygame.K_LEFT, self.go_left),
+            (pygame.K_RIGHT, self.go_right)
+        }
         self.idle = pygame.image.load("assets/character.png")
         self.rect = self.idle.get_rect()
         self.x = 1280 / 2
@@ -25,15 +32,27 @@ class Player(pygame.sprite.Sprite):
         #render character
         screen.blit(self.current_image, (self.x, self.y))
 
-
-    def go_left(self):
-        self.actual_speed.x = self.speed
+    #deplacements
+    def go_left(self, speed):
+        self.actual_speed[0] = -speed
 
     def go_right(self):
-        self.actual_speed.x = -self.speed
+        self.actual_speed[0] = self.speed
 
     def go_up(self):
-        self.actual_speed.y = -self.speed
+        self.actual_speed[1] = -self.speed
 
     def go_down(self):
-        self.actual_speed.y = self.speed
+        self.actual_speed[1] = self.speed
+
+    def handle_movements(self, keys_pressed):
+        movement = False
+
+        for i in self.controls:
+            if keys_pressed()[i[0]]:
+                i[1]()
+                movement = True
+        if not movement:
+            self.actual_speed[0] = 0
+            self.actual_speed[1] = 0
+
