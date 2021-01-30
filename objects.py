@@ -61,14 +61,14 @@ class Objects(pygame.sprite.Sprite):
 
         if (world == 0): #bright
             self.images = {
-                'siege': pygame.image.load("assets/props/pos/siege.png")
+                'siege': pygame.image.load("assets/props/pos/solid/siege.png")
             }
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 200), (140, 120), -95))
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 400), (140, 120), -85))
             self.solid_objects.append(SolidObject(self.images['siege'], (850, 650), (140, 120), 4))
         else:
             self.images = {
-                'siege': pygame.image.load("assets/props/neg/siege.png")
+                'siege': pygame.image.load("assets/props/neg/solid/siege.png")
             }
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 200), (140, 120), -95))
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 400), (140, 120), -85))
