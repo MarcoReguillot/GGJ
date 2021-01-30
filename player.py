@@ -172,7 +172,9 @@ class Player(pygame.sprite.Sprite):
                 if (len(movements) == 2):
                     break
         for i in movements:
-            i(self.speed / len(movements))
+            if (((i != self.go_up and i != self.go_down) or y == True) and
+                ((i != self.go_left and i != self.go_right) or x == True)):
+                i(self.speed / len(movements))
         if (x == False):
             self.actual_speed[0] = self.go_to_value(self.actual_speed[0], self.stop_speed, 0)
         if (y == False):
