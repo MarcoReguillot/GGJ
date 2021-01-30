@@ -28,6 +28,12 @@ class Map(pygame.sprite.Sprite):
         self.Rect_white.append(pygame.Rect(-2400, 940, 308, 900))
         self.little_white_12 = pygame.transform.scale(pygame.image.load('assets/white.jpg'), (661, 308))
         self.Rect_white.append(pygame.Rect(-2580, 632, 661, 308))
+        self.little_white_15 = pygame.transform.scale(pygame.image.load('assets/white.jpg'), (941, 1392))
+        self.Rect_white.append(pygame.Rect(-1930, 350, 941, 1392))
+        self.little_white_16 = pygame.transform.scale(pygame.image.load('assets/white.jpg'), (941, 1392))
+        self.Rect_white.append(pygame.Rect(-3500, 350, 941, 1392))
+        self.little_white_11 = pygame.transform.scale(pygame.image.load('assets/white.jpg'), (308, 2646))
+        self.Rect_white.append(pygame.Rect(-2400, -1980, 308, 2646))
 
         #black
         self.Rect_black = []
@@ -45,33 +51,25 @@ class Map(pygame.sprite.Sprite):
             return (0)
         return (1)
 
-    def old(self, x, y):
-        self.Rect_white[0] = pygame.Rect(200 - x, -100 - y, 873, 873)
-        self.Rect_white[2] = pygame.Rect(-650 - x, 2591 - y, 2571, 1380)
-        self.Rect_white[1] = pygame.Rect(483 - x, 722 - y, 308, 1919)
-        self.Rect_white[3] = pygame.Rect(-400 - x, 1840 - y, 308, 750)
-        self.Rect_white[4] = pygame.Rect(-2400 - x, 1840 - y, 2000, 308)
-        self.Rect_white[5] = pygame.Rect(-2400 - x, 940 - y, 308, 900)
-        self.Rect_white[6] = pygame.Rect(-2580 - x, 632 - y, 661, 308)
+    def make_room(self, room_nb, x, y, screen, image, space, left, top, width, height):
+        self.Rect_white[room_nb] = pygame.Rect(left - x, top - y, width, height)
+        if self.in_the_screen(self.Rect_white[room_nb]) == 1 and space == 1:
+            screen.blit(image, (left - x, top - y))
 
-    def old_display(self, screen, x, y):
+    def old(self, x, y, screen, space):
         screen.blit(self.black, (0, 0))
-        if self.in_the_screen(self.Rect_white[0]) == 1:
-            screen.blit(self.little_white_8, (200 - x, -100 - y))
-        if self.in_the_screen(self.Rect_white[2]) == 1:
-            screen.blit(self.little_white_2, (-650 - x, 2591 - y))
-        if self.in_the_screen(self.Rect_white[1]) == 1:
-            screen.blit(self.little_white_3, (483 - x, 722 - y))
-        if self.in_the_screen(self.Rect_white[3]) == 1:
-            screen.blit(self.little_white_10_1, (-400 - x, 1840 - y))
-        if self.in_the_screen(self.Rect_white[4]) == 1:
-            screen.blit(self.little_white_10_2, (-2400 - x, 1840 - y))
-        if self.in_the_screen(self.Rect_white[5]) == 1:
-            screen.blit(self.little_white_10_3, (-2400 - x, 940 - y))
-        if self.in_the_screen(self.Rect_white[6]) == 1:
-            screen.blit(self.little_white_12, (-2580 - x, 632 - y))
+        self.make_room(0, x, y, screen, self.little_white_8, space, 200, -100, 873, 873)
+        self.make_room(1, x, y, screen, self.little_white_3, space, 483, 722, 308, 1919)
+        self.make_room(2, x, y, screen, self.little_white_2, space, -650, 2591, 2571, 1380)
+        self.make_room(3, x, y, screen, self.little_white_10_1, space, -400, 1840, 308, 750)
+        self.make_room(4, x, y, screen, self.little_white_10_2, space, -2400, 1840, 2000, 308)
+        self.make_room(5, x, y, screen, self.little_white_10_3, space, -2400, 940, 308, 900)
+        self.make_room(6, x, y, screen, self.little_white_12, space, -2580, 632, 661, 308)
+        self.make_room(7, x, y, screen, self.little_white_15, space, -1930, 350, 941, 1392)
+        self.make_room(8, x, y, screen, self.little_white_16, space, -3500, 350, 941, 1392)
+        self.make_room(9, x, y, screen, self.little_white_11, space, -2400, -1980, 308, 2646)
 
-    def child(self, x, y):
+    def child(self, x, y, screen, space):
         self.Rect_black[0] = pygame.Rect(560 - x, 300 - y, 250, 250)
         self.Rect_black[1] = pygame.Rect(1030 - x, 200 - y, 250, 250)
 
