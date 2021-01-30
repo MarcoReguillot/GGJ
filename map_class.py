@@ -36,6 +36,8 @@ class Map(pygame.sprite.Sprite):
         self.Rect_white.append(pygame.Rect(-2400, -1980, 308, 2646))
         self.little_white_14 = pygame.transform.scale(pygame.image.load('assets/white.jpg'), (1954, 1233))
         self.Rect_white.append(pygame.Rect(-3240, -3213, 1954, 1233))
+        self.little_white_7 = pygame.transform.scale(pygame.image.load('assets/white.jpg'), (1300, 308))
+        self.Rect_white.append(pygame.Rect(2073, 160, 1300, 308))
 
         #black
         self.Rect_black = []
@@ -54,6 +56,25 @@ class Map(pygame.sprite.Sprite):
         self.Rect_black.append(pygame.Rect(-2017, 4571, 2500, 308))
         self.little_black_2 = pygame.transform.scale(pygame.image.load('assets/black.png'), (1954, 1233))
         self.Rect_black.append(pygame.Rect(-3971, 4200, 1954, 1233))
+        self.little_black_18 = pygame.transform.scale(pygame.image.load('assets/black.png'), (661, 308))
+        self.Rect_black.append(pygame.Rect(-2580, 632, 661, 308))
+        self.little_black_19 = pygame.transform.scale(pygame.image.load('assets/black.png'), (941, 1392))
+        self.Rect_black.append(pygame.Rect(-1930, 350, 941, 1392))
+        self.little_black_20 = pygame.transform.scale(pygame.image.load('assets/black.png'), (941, 1392))
+        self.Rect_black.append(pygame.Rect(-3500, 350, 941, 1392))
+        self.little_black_15 = pygame.transform.scale(pygame.image.load('assets/black.png'), (308, 2646))
+        self.Rect_black.append(pygame.Rect(-2400, -1980, 308, 2646))
+        self.little_black_16 = pygame.transform.scale(pygame.image.load('assets/black.png'), (1954, 1233))
+        self.Rect_black.append(pygame.Rect(-3240, -3213, 1954, 1233))
+        self.little_black_6 = pygame.transform.scale(pygame.image.load('assets/black.png'), (1800, 308))
+        self.Rect_black.append(pygame.Rect(1921, 2800, 1800, 308))
+        self.little_black_3 = pygame.transform.scale(pygame.image.load('assets/black.png'), (1000, 941))
+        self.Rect_black.append(pygame.Rect(3721, 2300, 1000, 941))
+        self.little_black_13 = pygame.transform.scale(pygame.image.load('assets/black.png'), (1300, 308))
+        self.Rect_black.append(pygame.Rect(1073, 160, 1300, 308))
+        self.little_black_12 = pygame.transform.scale(pygame.image.load('assets/black.png'), (308, 1000))
+        self.Rect_black.append(pygame.Rect(3065, -532, 308, 1000))
+
 
 
     def display_cams(self, screen, x, y):
@@ -88,6 +109,7 @@ class Map(pygame.sprite.Sprite):
         self.make_room_w(8, x, y, screen, self.little_white_16, space, -3500, 350, 941, 1392)
         self.make_room_w(9, x, y, screen, self.little_white_11, space, -2400, -1980, 308, 2646)
         self.make_room_w(10, x, y, screen, self.little_white_14, space, -3240, -3213, 1954, 1233)
+        self.make_room_w(11, x, y, screen, self.little_white_7, space, 2073, 160, 1300, 308)
 
     def child(self, x, y, screen, space):
         if space == 0:
@@ -99,3 +121,12 @@ class Map(pygame.sprite.Sprite):
         self.make_room_b(4, x, y, screen, self.little_black_5_1, space, 483, 3971, 308, 900)
         self.make_room_b(5, x, y, screen, self.little_black_5_2, space, -2017, 4564, 2500, 308)
         self.make_room_b(6, x, y, screen, self.little_black_2, space, -3971, 4200, 1954, 1233)
+        self.make_room_b(7, x, y, screen, self.little_black_18, space, -2580, 632, 661, 308)
+        self.make_room_b(8, x, y, screen, self.little_black_19, space, -1930, 350, 941, 1392)
+        self.make_room_b(9, x, y, screen, self.little_black_20, space, -3500, 350, 941, 1392)
+        self.make_room_b(10, x, y, screen, self.little_black_15, space, -2400, -1980, 308, 2646)
+        self.make_room_b(11, x, y, screen, self.little_black_16, space, -3240, -3213, 1954, 1233)
+        self.make_room_b(12, x, y, screen, self.little_black_6, space, 1921, 2800, 1800, 308)
+        self.make_room_b(13, x, y, screen, self.little_black_3, space, 3721, 2300, 1000, 941)
+        self.make_room_b(14, x, y, screen, self.little_black_13, space, 1073, 160, 1300, 308)
+        self.make_room_b(15, x, y, screen, self.little_black_12, space, 3065, -532, 308, 1000)
