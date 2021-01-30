@@ -79,6 +79,10 @@ def game():
         else:
             maps.old_display(screen, player.x, player.y)
         player.update(screen)
+        if (maps.cameras.detect(player)):
+            print("ok")
+        else:
+            print("pas ok")
         pygame.display.flip()
 
 game()

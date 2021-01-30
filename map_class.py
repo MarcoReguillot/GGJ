@@ -4,11 +4,13 @@
 import pygame
 import numpy as np
 import animations
+from camera import Camera
 
 class Map(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-
+        self.cameras = Camera()
+        #self.cameras.append(Camera())
         #white
         self.Rect_white = []
         self.white = pygame.image.load('assets/white.jpg')
@@ -24,6 +26,9 @@ class Map(pygame.sprite.Sprite):
         self.Rect_black.append(pygame.Rect(560, 300, 250, 250))
         self.little_black_2 = pygame.transform.scale(pygame.image.load('assets/black.jpg'), (250, 250))
         self.Rect_black.append(pygame.Rect(1030, 0, 250, 250))
+
+    def display_cams(self, screen, x, y):
+        self.cameras.display(screen, x, y)
 
     def old(self, x, y):
         self.Rect_white[0] = pygame.Rect(560 - x, 300 - y, 250, 250)
@@ -42,3 +47,4 @@ class Map(pygame.sprite.Sprite):
         screen.blit(self.white, (0, 0))
         screen.blit(self.little_black_1, (560 - x, 300 - y))
         screen.blit(self.little_black_2, (1030 - x, 200 - y))
+        self.display_cams(screen, x, y)

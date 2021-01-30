@@ -33,6 +33,7 @@ class Player(pygame.sprite.Sprite):
         self.x = 0
         self.y = 0
         self.animation = create_animation("assets/character/", 3, ".png", (100, 100))
+        self.image = self.animation[1]
         self.rect = self.animation[0].get_rect()
         self.current_animation = 0
         self.animation_speed = 0.2
@@ -42,7 +43,8 @@ class Player(pygame.sprite.Sprite):
         self.stop_speed = 1.5
         self.current_image = self.animation[0]
         self.temp_null_objects = []
-        #self.walk_anim = create_animation("assets/character/walk/", 1, "assets")
+        self.rect.x = (1280 - self.rect.width) / 2
+        self.rect.y = (720 - self.rect.height) / 2
 
     def collision_down(self, objects):
         rect = self.rect
@@ -100,6 +102,8 @@ class Player(pygame.sprite.Sprite):
             (self.actual_speed[1] > 0 and not self.collision_down(self.temp_null_objects))):
             self.y += self.actual_speed[1]
         self.rect = self.animation[0].get_rect()
+        self.rect.x = (1280 - self.rect.width) / 2
+        self.rect.y = (720 - self.rect.height) / 2
         #render character
         self.update_animation()
         self.current_image = pygame.transform.rotate(self.current_image, self.rotation)
