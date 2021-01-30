@@ -48,12 +48,10 @@ def menu(screen):
         mx, my = pygame.mouse.get_pos()
 
         if play_rect.collidepoint((mx, my)):
-            print('a')
             if click == True:
                 end = 0
                 wait = False
         elif info_rect.collidepoint((mx, my)):
-            print('b')
             if click == True:
                 if help(screen) == 1:
                     return (1)

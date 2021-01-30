@@ -32,17 +32,24 @@ class Map(pygame.sprite.Sprite):
     def display_cams(self, screen, x, y):
         self.cameras.display(screen, x, y)
 
+    def in_the_screen(self, rect):
+        if rect.left + rect.width < 0 or rect.left > 1280 or rect.top + rect.height < 0 or rect.top > 720:
+            return (0)
+        return (1)
+
     def old(self, x, y):
         self.Rect_white[0] = pygame.Rect(200 - x, -100 - y, 873, 873)
-        self.Rect_white[1] = pygame.Rect(483 - x, 722 - y, 308, 1919)
         self.Rect_white[2] = pygame.Rect(-650 - x, 2591 - y, 2571, 1380)
+        self.Rect_white[1] = pygame.Rect(483 - x, 722 - y, 308, 1919)
 
     def old_display(self, screen, x, y):
         screen.blit(self.black, (0, 0))
-
-        screen.blit(self.little_white_8, (200 - x, -100 - y))
-        screen.blit(self.little_white_2, (-650 - x, 2591 - y))
-        screen.blit(self.little_white_3, (483 - x, 722 - y))
+        if self.in_the_screen(self.Rect_white[0]) == 1:
+            screen.blit(self.little_white_8, (200 - x, -100 - y))
+        if self.in_the_screen(self.Rect_white[2]) == 1:
+            screen.blit(self.little_white_2, (-650 - x, 2591 - y))
+        if self.in_the_screen(self.Rect_white[1]) == 1:
+            screen.blit(self.little_white_3, (483 - x, 722 - y))
 
     def child(self, x, y):
         self.Rect_black[0] = pygame.Rect(560 - x, 300 - y, 250, 250)
