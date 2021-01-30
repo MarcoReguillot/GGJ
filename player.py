@@ -50,7 +50,7 @@ class Player(pygame.sprite.Sprite):
         x = self.rect.left
         y = self.rect.top
         x += self.rect.width / 2
-        y += self.rect.height * 2
+        y += self.rect.height * 1.3
         for i in objects:
             if i.collidepoint((x, y)):
                 return (False)
@@ -59,6 +59,7 @@ class Player(pygame.sprite.Sprite):
     def collision_up(self, objects):
         x = self.rect.left
         y = self.rect.top
+        y -= 0.3 * self.rect.height
         x += self.rect.width / 2
         for i in objects:
             if i.collidepoint((x, y)):
@@ -69,7 +70,7 @@ class Player(pygame.sprite.Sprite):
         x = self.rect.left
         y = self.rect.top
         y += self.rect.height / 2
-        x += self.rect.width * 2
+        x += self.rect.height * 1.3
         for i in objects:
             if i.collidepoint((x, y)):
                 return (False)
@@ -79,6 +80,7 @@ class Player(pygame.sprite.Sprite):
         x = self.rect.left
         y = self.rect.top
         y += self.rect.height / 2
+        x -= self.rect.height * 0.3
         for i in objects:
             if i.collidepoint((x, y)):
                 return (False)
