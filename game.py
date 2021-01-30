@@ -6,6 +6,7 @@ from pygame.locals import *
 from player import Player
 from map_class import Map
 from menu import menu
+from hud import HudText
 
 pygame.init()
 
@@ -30,6 +31,9 @@ player = Player()
 
 #Map creation
 maps = Map()
+
+hud = HudText()
+hud.render_text("bonjour, tu es une pauvre merde", "Appuie sur echap et vas crever", "Merci.")
 
 #Sound
 ost = pygame.mixer.Sound('assets/ost.wav')
@@ -73,6 +77,8 @@ def event():
                 sound = pygame.mixer.Sound("assets/stop.wav")
                 sound.set_volume(0.1)
                 sound.play()
+        if (event.type == KEYDOWN and pygame.key.get_pressed()[pygame.K_RETURN]):
+            hud.hide_text()
     player.handle_movements(pygame.key.get_pressed)
 
 def game():
@@ -91,6 +97,7 @@ def game():
             player.handle_collisions(maps.Rect_white)
             maps.old_display(screen, player.x, player.y)
         player.update(screen, clock.get_fps())
+        hud.update(screen)
         pygame.display.flip()
 
 game()
