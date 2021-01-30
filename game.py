@@ -32,7 +32,8 @@ player = Player()
 
 #Map creation
 maps = Map()
-objects = Objects()
+objects_light = Objects(0)
+objects_dark = Objects(1)
 
 hud = HudText()
 hud.render_text("bonjour, tu es une pauvre merde", "Appuie sur echap et vas crever", "Merci.")
@@ -93,11 +94,12 @@ def game():
         maps.child(player.x, player.y, screen, space)
         maps.old(player.x, player.y, screen, space)
         if space == 0:
-            player.handle_collisions(maps.Rect_black, objects)
+            player.handle_collisions(maps.Rect_black, objects_dark)
+            objects_dark.update(screen, player)
         else:
-            player.handle_collisions(maps.Rect_white, objects)
+            player.handle_collisions(maps.Rect_white, objects_light)
+            objects_light.update(screen, player)
         player.update(screen, clock.get_fps())
-        objects.update(screen, player)
         hud.update(screen)
         pygame.display.flip()
 
