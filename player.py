@@ -29,6 +29,7 @@ class Player(pygame.sprite.Sprite):
             (pygame.K_LEFT, self.go_left),
             (pygame.K_RIGHT, self.go_right)
         }
+        self.clock = 0
         self.rotation = 0
         self.x = 0
         self.y = 0
@@ -93,16 +94,16 @@ class Player(pygame.sprite.Sprite):
         #    print("pas ok")
         if ((self.actual_speed[0] < 0 and not self.collision_left(map)) or
             (self.actual_speed[0] > 0 and not self.collision_right(map))):
-            self.x += self.actual_speed[0]
+            self.x += self.actual_speed[0] * (50 / self.clock)
         if ((self.actual_speed[1] < 0 and not self.collision_up(map)) or
             (self.actual_speed[1] > 0 and not self.collision_down(map))):
-            self.y += self.actual_speed[1]
+            self.y += self.actual_speed[1] * (50 / self.clock)
 
     def update_animation(self):
         if (self.actual_speed[0] == 0 and self.actual_speed[1] == 0):
             self.current_image = self.animation[1]
             return
-        self.current_animation += self.animation_speed
+        self.current_animation += self.animation_speed * (50 / self.clock)
         if (self.current_animation < 3):
             self.current_image = self.animation[math.floor(self.current_animation)]
         elif(self.current_animation < 4):
@@ -111,14 +112,8 @@ class Player(pygame.sprite.Sprite):
             self.current_animation = 0
             self.current_image = self.animation[0]
 
-    def update(self, screen):
-        #updating position
-        #if ((self.actual_speed[0] < 0 and not self.collision_left(self.temp_null_objects)) or
-        #    (self.actual_speed[0] > 0 and not self.collision_right(self.temp_null_objects))):
-        #    self.x += self.actual_speed[0]
-        #if ((self.actual_speed[1] < 0 and not self.collision_up(self.temp_null_objects)) or
-        #    (self.actual_speed[1] > 0 and not self.collision_down(self.temp_null_objects))):
-        #    self.y += self.actual_speed[1]
+    def update(self, screen, clock):
+        self.clock = clock
         self.rect = self.animation[0].get_rect()
         self.rect.x = (1280 - self.rect.width) / 2
         self.rect.y = (720 - self.rect.height) / 2
