@@ -73,8 +73,10 @@ def event():
         elif event.type == KEYDOWN and pygame.key.get_pressed()[pygame.K_SPACE]:
             if change_space(space) == 1:
                 if space == 0:
+                    player.animation = player.anim_light
                     space = 1
                 else:
+                    player.animation = player.anim_dark
                     space = 0
             else:
                 sound = pygame.mixer.Sound("assets/stop.wav")

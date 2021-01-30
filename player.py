@@ -34,7 +34,9 @@ class Player(pygame.sprite.Sprite):
         self.rotation = 0
         self.x = 0
         self.y = 0
-        self.animation = create_animation("assets/character/", 3, ".png", (100, 100))
+        self.anim_light = create_animation("assets/character/pos/", 3, ".png", (100, 100))
+        self.anim_dark = create_animation("assets/character/neg/", 3, ".png", (100, 100))
+        self.animation = self.anim_light
         self.image = self.animation[1]
         self.rect = self.animation[0].get_rect()
         self.current_animation = 0
@@ -43,7 +45,7 @@ class Player(pygame.sprite.Sprite):
         self.rotation_speed = 20
         self.actual_speed = [0, 0]
         self.stop_speed = 1.5
-        self.current_image = self.animation[0]
+        self.current_image = self.anim_light[0]
         self.temp_null_objects = []
         self.rect.x = (1280 - self.rect.width) / 2
         self.rect.y = (720 - self.rect.height) / 2
