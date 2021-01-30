@@ -48,14 +48,12 @@ def collide(character, obj):
 def change_space(space):
     if space == 0:
         maps.old(player.x, player.y)
-        player.handle_collisions(maps.Rect_black)
         for inc in range(len(maps.Rect_white)):
             if collide(player.rect, maps.Rect_white[inc]) == 1:
                 return (1)
         return (0)
     else:
         maps.child(player.x, player.y)
-        player.handle_collisions(maps.Rect_white)
         for inc in range(len(maps.Rect_black)):
             if collide(player.rect, maps.Rect_black[inc]) == 1:
                 return (1)
@@ -87,8 +85,10 @@ def game():
         screen.fill((0, 0, 0))
         event()
         if space == 0:
+            player.handle_collisions(maps.Rect_black)
             maps.child_display(screen, player.x, player.y)
         else:
+            player.handle_collisions(maps.Rect_white)
             maps.old_display(screen, player.x, player.y)
         player.update(screen)
         pygame.display.flip()
