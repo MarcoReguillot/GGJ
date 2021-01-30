@@ -9,6 +9,7 @@ from menu import menu
 from hud import HudText
 from objects import Objects
 
+
 pygame.init()
 
 #FPS clock
@@ -36,7 +37,7 @@ objects_light = Objects(0)
 objects_dark = Objects(1)
 
 hud = HudText()
-hud.render_text("bonjour, tu es une pauvre merde", "Appuie sur echap et vas crever", "Merci.")
+hud.render_text("Press [SPACE].", "", "")
 
 #Sound
 ost = pygame.mixer.Sound('assets/ost.wav')
@@ -64,14 +65,19 @@ def change_space(space):
                 return (1)
         return (0)
 
+
 def event():
     global space
     global running
+    already_pressed_space = False
     for event in pygame.event.get():
         if event.type == QUIT:
             running = False
         elif event.type == KEYDOWN and pygame.key.get_pressed()[pygame.K_SPACE]:
             if change_space(space) == 1:
+                if not (already_pressed_space):
+                    hud.render_text("", "Well done...", "")
+                    already_pressed_space = True
                 if space == 0:
                     player.animation = player.anim_light
                     space = 1
