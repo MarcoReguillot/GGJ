@@ -19,6 +19,9 @@ info_rect = pygame.Rect(1210, 0, 70, 70)
 #info help cube
 info_cube =  pygame.image.load('assets/info_cube.png')
 
+#smyley
+smyley = pygame.image.load('assets/smile.png')
+
 def help(screen):
     wait = True
     end = 0
@@ -40,11 +43,15 @@ def menu(screen):
     wait = True
     click = False
     end = 0
+    space = 0
     while wait == True:
         screen.fill((0, 0, 0))
         screen.blit(background, (0, 0))
-        screen.blit(play, (620, 320))
-        screen.blit(info, (1210, 0))
+        if space == 0:
+            screen.blit(play, (620, 320))
+            screen.blit(info, (1210, 0))
+        else:
+            screen.blit(smyley, (500, 260))
         mx, my = pygame.mouse.get_pos()
 
         if play_rect.collidepoint((mx, my)):
@@ -63,6 +70,11 @@ def menu(screen):
             elif event.type == MOUSEBUTTONDOWN:
                 if event.button == 1:
                     click = True
+            elif event.type == KEYDOWN and pygame.key.get_pressed()[pygame.K_SPACE]:
+                if space == 0:
+                    space = 1
+                else:
+                    space = 0
         pygame.display.flip()
         clock.tick(60)
     return (end)
