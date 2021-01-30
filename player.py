@@ -47,38 +47,54 @@ class Player(pygame.sprite.Sprite):
         self.rect.y = (720 - self.rect.height) / 2
 
     def collision_down(self, objects):
-        rect = self.rect
-        rect.y += rect.y * 3 / 4
-        rect.width /= 4
+        x = self.rect.left
+        y = self.rect.top
+        x += self.rect.width / 2
+        y += self.rect.height * 2
         for i in objects:
-            if not i.contains(rect):
-                return (True)
-        return (False)
+            if i.collidepoint((x, y)):
+                return (False)
+        return (True)
 
     def collision_up(self, objects):
-        rect = self.rect
-        rect.height /= 4
+        x = self.rect.left
+        y = self.rect.top
+        x += self.rect.width / 2
         for i in objects:
-            if not i.contains(rect):
-                return (True)
-        return (False)
+            if i.collidepoint((x, y)):
+                return (False)
+        return (True)
 
     def collision_right(self, objects):
-        rect = self.rect
-        rect.x += rect.x / 4
-        rect.width /= 4
+        x = self.rect.left
+        y = self.rect.top
+        y += self.rect.height / 2
+        x += self.rect.width * 2
         for i in objects:
-            if not i.contains(rect):
-                return (True)
-        return (False)
+            if i.collidepoint((x, y)):
+                return (False)
+        return (True)
 
     def collision_left(self, objects):
-        rect = self.rect
-        rect.width /= 4
+        x = self.rect.left
+        y = self.rect.top
+        y += self.rect.height / 2
         for i in objects:
-            if not i.contains(rect):
-                return (True)
-        return (False)
+            if i.collidepoint((x, y)):
+                return (False)
+        return (True)
+
+    def handle_collisions(self, map):
+        #if (self.collision_down(map)):
+        #    print("ok")
+        #else:
+        #    print("pas ok")
+        if ((self.actual_speed[0] < 0 and not self.collision_left(map)) or
+            (self.actual_speed[0] > 0 and not self.collision_right(map))):
+            self.x += self.actual_speed[0]
+        if ((self.actual_speed[1] < 0 and not self.collision_up(map)) or
+            (self.actual_speed[1] > 0 and not self.collision_down(map))):
+            self.y += self.actual_speed[1]
 
     def update_animation(self):
         if (self.actual_speed[0] == 0 and self.actual_speed[1] == 0):
@@ -95,12 +111,12 @@ class Player(pygame.sprite.Sprite):
 
     def update(self, screen):
         #updating position
-        if ((self.actual_speed[0] < 0 and not self.collision_left(self.temp_null_objects)) or
-            (self.actual_speed[0] > 0 and not self.collision_right(self.temp_null_objects))):
-            self.x += self.actual_speed[0]
-        if ((self.actual_speed[1] < 0 and not self.collision_up(self.temp_null_objects)) or
-            (self.actual_speed[1] > 0 and not self.collision_down(self.temp_null_objects))):
-            self.y += self.actual_speed[1]
+        #if ((self.actual_speed[0] < 0 and not self.collision_left(self.temp_null_objects)) or
+        #    (self.actual_speed[0] > 0 and not self.collision_right(self.temp_null_objects))):
+        #    self.x += self.actual_speed[0]
+        #if ((self.actual_speed[1] < 0 and not self.collision_up(self.temp_null_objects)) or
+        #    (self.actual_speed[1] > 0 and not self.collision_down(self.temp_null_objects))):
+        #    self.y += self.actual_speed[1]
         self.rect = self.animation[0].get_rect()
         self.rect.x = (1280 - self.rect.width) / 2
         self.rect.y = (720 - self.rect.height) / 2
@@ -122,8 +138,6 @@ class Player(pygame.sprite.Sprite):
     def go_down(self, speed):
         self.actual_speed[1] = speed
 
-    def handle_collisions(self, map):
-        return
 
     def go_to_value(self, value, step, goal):
         if (value > goal):
