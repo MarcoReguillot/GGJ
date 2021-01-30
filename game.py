@@ -41,19 +41,15 @@ def change_space(space):
     maps.old(player.x, player.y)
     maps.child(player.x, player.y)
     if space == 0:
-        if collide(player.rect, maps.little_white_corner_rect) == 1:
-            return (1)
-        elif collide(player.rect, maps.little_white_rect) == 1:
-            return (1)
-        else:
-            return (0)
+        for inc in range(len(maps.Rect_white)):
+            if collide(player.rect, maps.Rect_white[inc]) == 1:
+                return (1)
+        return (0)
     else:
-        if collide(player.rect, maps.little_black_1_rect) == 1:
-            return (1)
-        elif collide(player.rect, maps.little_black_2_rect) == 1:
-            return (1)
-        else:
-            return (0)
+        for inc in range(len(maps.Rect_black)):
+            if collide(player.rect, maps.Rect_black[inc]) == 1:
+                return (1)
+        return (0)
 
 def event():
     global space
