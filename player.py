@@ -122,6 +122,9 @@ class Player(pygame.sprite.Sprite):
     def go_down(self, speed):
         self.actual_speed[1] = speed
 
+    def handle_collisions(self, map):
+        return
+
     def go_to_value(self, value, step, goal):
         if (value > goal):
             value -= step
