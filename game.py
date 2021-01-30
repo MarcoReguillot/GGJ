@@ -13,7 +13,7 @@ pygame.init()
 clock = pygame.time.Clock()
 
 #space
-space = 0
+space = 1
 
 #game screen generation
 pygame.display.set_caption('')
@@ -46,14 +46,14 @@ def collide(character, obj):
     return (0)
 
 def change_space(space):
-    maps.old(player.x, player.y)
-    maps.child(player.x, player.y)
     if space == 0:
+        maps.old(player.x, player.y)
         for inc in range(len(maps.Rect_white)):
             if collide(player.rect, maps.Rect_white[inc]) == 1:
                 return (1)
         return (0)
     else:
+        maps.child(player.x, player.y)
         for inc in range(len(maps.Rect_black)):
             if collide(player.rect, maps.Rect_black[inc]) == 1:
                 return (1)
@@ -81,7 +81,7 @@ def game():
     if menu(screen) == 1:
         return (0)
     while running:
-        clock.tick(60)
+        clock.tick(90)
         screen.fill((0, 0, 0))
         event()
         if space == 0:
@@ -89,10 +89,6 @@ def game():
         else:
             maps.old_display(screen, player.x, player.y)
         player.update(screen)
-        if (maps.cameras.detect(player)):
-            print("ok")
-        else:
-            print("pas ok")
         pygame.display.flip()
 
 game()

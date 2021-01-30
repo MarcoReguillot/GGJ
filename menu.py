@@ -12,7 +12,7 @@ background = pygame.image.load('assets/bg.jpg')
 
 #menu buttons
 play = pygame.image.load('assets/play.png')
-play_rect = pygame.Rect(620, 320, 80, 80)
+play_rect = pygame.Rect(620, 320, 70, 70)
 info = pygame.transform.scale(pygame.image.load('assets/help.png'), (70, 70))
 info_rect = pygame.Rect(1210, 0, 70, 70)
 
@@ -47,12 +47,16 @@ def menu(screen):
         screen.blit(info, (1210, 0))
         mx, my = pygame.mouse.get_pos()
 
-        if play_rect.collidepoint((mx, my)) and click == True:
-            end = 0
-            wait = False
-        elif info_rect.collidepoint((mx, my)) and click == True:
-            if help(screen) == 1:
-                return (1)
+        if play_rect.collidepoint((mx, my)):
+            print('a')
+            if click == True:
+                end = 0
+                wait = False
+        elif info_rect.collidepoint((mx, my)):
+            print('b')
+            if click == True:
+                if help(screen) == 1:
+                    return (1)
         click = False
         for event in pygame.event.get():
             if event.type == QUIT:

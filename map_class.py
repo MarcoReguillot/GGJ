@@ -14,10 +14,12 @@ class Map(pygame.sprite.Sprite):
         #white
         self.Rect_white = []
         self.white = pygame.image.load('assets/white.jpg')
-        self.little_white_corner = pygame.transform.scale(pygame.image.load('assets/white.jpg'), (250, 250))
-        self.Rect_white.append(pygame.Rect(560, 300, 250, 250))
-        self.little_white = pygame.transform.scale(pygame.image.load('assets/white.jpg'), (400, 150))
-        self.Rect_white.append(pygame.Rect(810, 300, 300, 100))
+        self.little_white_8 = pygame.image.load('assets/png/Map_GGJ_POS_08.png')
+        self.Rect_white.append(pygame.Rect(200, -100, 873, 873))
+        self.little_white_3 = pygame.image.load('assets/png/Map_GGJ_POS_03.png')
+        self.Rect_white.append(pygame.Rect(483, 722, 308, 1919))
+        self.little_white_2 = pygame.image.load('assets/png/Map_GGJ_POS_02.png')
+        self.Rect_white.append(pygame.Rect(-650, 2591, 2571, 1380))
 
         #black
         self.Rect_black = []
@@ -31,13 +33,16 @@ class Map(pygame.sprite.Sprite):
         self.cameras.display(screen, x, y)
 
     def old(self, x, y):
-        self.Rect_white[0] = pygame.Rect(560 - x, 300 - y, 250, 250)
-        self.Rect_white[1] = pygame.Rect(810 - x, 300 - y, 400, 150)
+        self.Rect_white[0] = pygame.Rect(200 - x, -100 - y, 873, 873)
+        self.Rect_white[1] = pygame.Rect(483 - x, 722 - y, 308, 1919)
+        self.Rect_white[2] = pygame.Rect(-650 - x, 2591 - y, 2571, 1380)
 
     def old_display(self, screen, x, y):
         screen.blit(self.black, (0, 0))
-        screen.blit(self.little_white_corner, (560 - x, 300 - y))
-        screen.blit(self.little_white, (810 - x, 300 - y))
+
+        screen.blit(self.little_white_8, (200 - x, -100 - y))
+        screen.blit(self.little_white_2, (-650 - x, 2591 - y))
+        screen.blit(self.little_white_3, (483 - x, 722 - y))
 
     def child(self, x, y):
         self.Rect_black[0] = pygame.Rect(560 - x, 300 - y, 250, 250)
