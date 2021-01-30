@@ -7,6 +7,7 @@ from player import Player
 from map_class import Map
 from menu import menu
 from hud import HudText
+from objects import Objects
 
 pygame.init()
 
@@ -31,6 +32,7 @@ player = Player()
 
 #Map creation
 maps = Map()
+objects = Objects()
 
 hud = HudText()
 hud.render_text("bonjour, tu es une pauvre merde", "Appuie sur echap et vas crever", "Merci.")
@@ -91,12 +93,13 @@ def game():
         maps.child(player.x, player.y)
         maps.old(player.x, player.y)
         if space == 0:
-            player.handle_collisions(maps.Rect_black)
+            player.handle_collisions(maps.Rect_black, objects)
             maps.child_display(screen, player.x, player.y)
         else:
-            player.handle_collisions(maps.Rect_white)
+            player.handle_collisions(maps.Rect_white, objects)
             maps.old_display(screen, player.x, player.y)
         player.update(screen, clock.get_fps())
+        objects.update(screen, player)
         hud.update(screen)
         pygame.display.flip()
 

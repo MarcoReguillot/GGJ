@@ -4,6 +4,7 @@
 import pygame
 from animations import create_animation
 import random
+from objects import Objects
 import math
 
 def get_nearest(value, goal1, goal2):
@@ -47,54 +48,66 @@ class Player(pygame.sprite.Sprite):
         self.rect.x = (1280 - self.rect.width) / 2
         self.rect.y = (720 - self.rect.height) / 2
 
-    def collision_down(self, objects):
+    def collision_down(self, rooms, objects):
         x = self.rect.left
         y = self.rect.top
         x += self.rect.width / 2
         y += self.rect.height
-        for i in objects:
+        for i in rooms:
             if i.collidepoint((x, y)):
+                for obj in objects.solid_objects:
+                    if (obj.rect.collidepoint(x, y)):
+                        return (True)
                 return (False)
         return (True)
 
-    def collision_up(self, objects):
+    def collision_up(self, room, objects):
         x = self.rect.left
         y = self.rect.top
         x += self.rect.width / 2
-        for i in objects:
+        for i in room:
             if i.collidepoint((x, y)):
+                for obj in objects.solid_objects:
+                    if (obj.rect.collidepoint(x, y)):
+                        return (True)
                 return (False)
         return (True)
 
-    def collision_right(self, objects):
+    def collision_right(self, room, objects):
         x = self.rect.left
         y = self.rect.top
         y += self.rect.height / 2
         x += self.rect.height
-        for i in objects:
+        for i in room:
             if i.collidepoint((x, y)):
+                for obj in objects.solid_objects:
+                    if (obj.rect.collidepoint(x, y)):
+                        return (True)
                 return (False)
         return (True)
 
-    def collision_left(self, objects):
+    def collision_left(self, room, objects):
         x = self.rect.left
         y = self.rect.top
         y += self.rect.height / 2
-        for i in objects:
+        for i in room:
             if i.collidepoint((x, y)):
+                for obj in objects.solid_objects:
+                    if (obj.rect.collidepoint(x, y)):
+                        return (True)
                 return (False)
         return (True)
 
-    def handle_collisions(self, map):
+    def handle_collisions(self, map, objects):
         #if (self.collision_down(map)):
         #    print("ok")
         #else:
         #    print("pas ok")
-        if ((self.actual_speed[0] < 0 and not self.collision_left(map)) or
-            (self.actual_speed[0] > 0 and not self.collision_right(map))):
+        if ((self.actual_speed[0] < 0 and not self.collision_left(map, objects)) or
+            (self.actual_speed[0] > 0 and not self.collision_right(map, objects))):
             self.x += self.actual_speed[0] * (50 / self.clock)
-        if ((self.actual_speed[1] < 0 and not self.collision_up(map)) or
-            (self.actual_speed[1] > 0 and not self.collision_down(map))):
+        if ((self.actual_speed[1] < 0 and not self.collision_up(map, objects)) or
+            (self.actual_speed[1] > 0 and not self.collision_down(map, objects))):
             self.y += self.actual_speed[1] * (50 / self.clock)
 
     def update_animation(self):
