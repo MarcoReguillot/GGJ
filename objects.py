@@ -49,13 +49,10 @@ class DecoObject(pygame.sprite.Sprite):
         self.image = image
         self.image = pygame.transform.scale(self.image, scale)
         self.image = pygame.transform.rotate(self.image, angle)
-        self.rect = self.image.get_rect()
         self.x = position[0]
         self.y = position[1]
 
     def update(self, screen, player):
-        self.rect.x = self.x - player.x
-        self.rect.y = self.y - player.y
         screen.blit(self.image, (self.x - player.x, self.y - player.y))
 
 class Objects(pygame.sprite.Sprite):
@@ -64,16 +61,18 @@ class Objects(pygame.sprite.Sprite):
 
         if (world == 0): #bright
             self.images = {
-                'siege': pygame.image.load("assets/props/siege.png")
+                'siege': pygame.image.load("assets/props/pos/siege.png")
             }
-            self.solid_objects.append(SolidObject(self.images['siege'], (200, 200), (140, 120), -90))
-            self.solid_objects.append(SolidObject(self.images['siege'], (400, 200), (140, 120), 0))
+            self.solid_objects.append(SolidObject(self.images['siege'], (200, 200), (140, 120), -95))
+            self.solid_objects.append(SolidObject(self.images['siege'], (200, 400), (140, 120), -85))
+            self.solid_objects.append(SolidObject(self.images['siege'], (850, 650), (140, 120), 4))
         else:
             self.images = {
-                'siege': pygame.image.load("assets/props/siege.png")
+                'siege': pygame.image.load("assets/props/neg/siege.png")
             }
-            self.solid_objects.append(SolidObject(self.images['siege'], (600, 200), (140, 120), 90))
-
+            self.solid_objects.append(SolidObject(self.images['siege'], (200, 200), (140, 120), -95))
+            self.solid_objects.append(SolidObject(self.images['siege'], (200, 400), (140, 120), -85))
+            self.solid_objects.append(SolidObject(self.images['siege'], (850, 650), (140, 120), 184))
     def update(self, screen, player):
         for i in self.solid_objects:
             i.update(screen, player)
