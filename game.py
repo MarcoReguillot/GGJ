@@ -90,8 +90,18 @@ def event():
                 sound = pygame.mixer.Sound("assets/stop.wav")
                 sound.set_volume(0.1)
                 sound.play()
-        if (event.type == KEYDOWN and pygame.key.get_pressed()[pygame.K_RETURN]):
-            hud.hide_text()
+        if (event.type == KEYDOWN):
+            if pygame.key.get_pressed()[pygame.K_RETURN]:
+                hud.hide_text()
+            elif pygame.key.get_pressed()[pygame.K_c]:
+                if (space == 0):
+                    for i in objects_dark.interactive_objects:
+                        if i.collision(player):
+                            hud.render_text(i.text1, i.text2, i.text3)
+                else:
+                    for i in objects_light.interactive_objects:
+                        if i.collision(player):
+                            hud.render_text(i.text1, i.text2, i.text3)
     player.handle_movements(pygame.key.get_pressed)
 
 def game():

@@ -9,12 +9,15 @@ import pygame
 import math
 
 class InteractiveObject(pygame.sprite.Sprite):
-    def __init__(self, image, position, scale, text):
+    def __init__(self, image, position, scale, angle, text1, text2, text3):
         super().__init__
         self.image = image
         self.image = pygame.transform.scale(self.image, scale)
+        self.image = pygame.transform.rotate(self.image, angle)
         self.rect = self.image.get_rect()
-        self.text = text
+        self.text1 = text1
+        self.text2 = text2
+        self.text3 = text3
         self.x = position[0]
         self.y = position[1]
     def collision(self, player):
@@ -23,10 +26,6 @@ class InteractiveObject(pygame.sprite.Sprite):
     def update(self, screen, player):
         self.rect.x = self.x - player.x
         self.rect.y = self.y - player.y
-        if self.collision(player):
-            print("ok")
-        else:
-            print("pas ok")
         screen.blit(self.image, (self.x - player.x, self.y - player.y))
 
 class SolidObject(pygame.sprite.Sprite):
@@ -68,6 +67,7 @@ class Objects(pygame.sprite.Sprite):
     def __init__(self, world):
         self.solid_objects = []
         self.deco_objects = []
+        self.interactive_objects = []
 
         if (world == 0): #bright
             self.images = {
@@ -80,9 +80,12 @@ class Objects(pygame.sprite.Sprite):
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 400), (140, 120), -85))
             self.solid_objects.append(SolidObject(self.images['siege'], (850, 650), (140, 120), 4))
 
-            self.deco_objects.append(DecoObject(self.images['os'], (800, 400), (50, 80), 120))
+            #self.deco_objects.append(DecoObject(self.images['os'], (800, 400), (50, 80), 120))
 
             self.lamp((600, 400), (100, 100), 0)
+
+            self.interactive_objects.append(InteractiveObject(self.images['os'], (800, 400), (50, 80), 120,
+                "this is an os", "Crazy Insane...", "...Insane Crazy !"))
         else:
             self.images = {
                 'siege': pygame.image.load("assets/props/neg/solid/siege.png"),
@@ -97,8 +100,13 @@ class Objects(pygame.sprite.Sprite):
             self.deco_objects.append(DecoObject(self.images['os'], (800, 400), (50, 80), 120))
 
             self.lamp((600, 400), (100, 100), 0)
+
+            self.interactive_objects.append(InteractiveObject(self.images['os'], (800, 400), (50, 80), 120,
+                "this is an os", "Crazy Insane...", "...Insane Crazy !"))
     def update(self, screen, player):
         for i in self.deco_objects:
+            i.update(screen, player)
+        for i in self.interactive_objects:
             i.update(screen, player)
         for i in self.solid_objects:
             i.update(screen, player)

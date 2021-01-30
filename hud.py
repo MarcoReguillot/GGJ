@@ -58,4 +58,4 @@ class HudText(pygame.sprite.Sprite):
                 screen.blit(self.script_image_dark, (140, 720 - 300))
                 GAME_FONT.render_to(screen, (260, 720 - 220), self.text[0:math.floor(self.moment)], (255, 255, 255))
                 GAME_FONT.render_to(screen, (260, 720 - 175), self.line2[0:pos(self.moment - len1)], (255, 255, 255))
-                GAME_FONT.render_to(screen, (260, 720 - 130), self.line3[0:pos(self.moment - len2)], (255, 255, 255))
+                GAME_FONT.render_to(screen, (260, 720 - 130), self.line3[0:pos(self.moment - len1 - len2)], (255, 255, 255))
