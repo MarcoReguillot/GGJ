@@ -135,11 +135,11 @@ class Player(pygame.sprite.Sprite):
 
     def go_to_value(self, value, step, goal):
         if (value > goal):
-            value -= step
+            value -= step * (50 / self.clock)
             if (value < goal):
                 value = goal
         elif (value < goal):
-            value += step
+            value += step * (50 / self.clock)
             if (value > goal):
                 value = goal
         return (value)
