@@ -110,7 +110,7 @@ def game():
             player.handle_collisions(maps.Rect_white, objects_light)
             objects_light.update(screen, player)
         player.update(screen, clock.get_fps())
-        hud.update(screen, space)
+        hud.update(screen, space, clock.get_fps())
         pygame.display.flip()
 
 game()
