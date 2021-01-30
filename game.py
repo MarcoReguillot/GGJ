@@ -5,6 +5,7 @@ import pygame, pyglet
 from pygame.locals import *
 from player import Player
 from map_class import Map
+from menu import menu
 
 pygame.init()
 
@@ -18,6 +19,8 @@ space = 0
 pygame.display.set_caption('')
 size = width, height = 1280, 720
 screen = pygame.display.set_mode((size))
+icon = pygame.image.load('assets/icon.png')
+pygame.display.set_icon(icon)
 
 #mouse
 pygame.mouse.set_cursor(*pygame.cursors.diamond)
@@ -27,6 +30,11 @@ player = Player()
 
 #Map creation
 maps = Map()
+
+#Sound
+ost = pygame.mixer.Sound('assets/ost.wav')
+ost.set_volume(0.2)
+ost.play(loops = -1, maxtime = 0, fade_ms = 0)
 
 running = True
 
@@ -70,6 +78,8 @@ def event():
     player.handle_movements(pygame.key.get_pressed)
 
 def game():
+    if menu(screen) == 1:
+        return (0)
     while running:
         clock.tick(60)
         screen.fill((0, 0, 0))
