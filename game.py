@@ -66,10 +66,12 @@ def change_space(space):
         return (0)
 
 
+already_pressed_space = False
+
 def event():
+    global already_pressed_space
     global space
     global running
-    already_pressed_space = False
     for event in pygame.event.get():
         if event.type == QUIT:
             running = False
