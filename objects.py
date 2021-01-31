@@ -77,18 +77,21 @@ class Objects(pygame.sprite.Sprite):
                 'os': pygame.image.load("assets/props/pos/deco/os.png"),
                 'train': pygame.image.load("assets/props/pos/deco/train.png"),
                 'locomotive': pygame.image.load("assets/props/pos/deco/locomotive.png"),
-                'train_circuit': pygame.image.load("assets/props/pos/deco/train_circuit.png")
+                'train_circuit': pygame.image.load("assets/props/pos/deco/train_circuit.png"),
+                'button': pygame.image.load("assets/props/pos/interactive/button.png"),
+                'bed': pygame.image.load("assets/props/pos/solid/lit_pos.png"),
+                'bed_table': pygame.image.load("assets/props/pos/solid/table_de_nuit_pos.png"),
             }
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 200), (140, 120), -95))
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 400), (140, 120), -85))
             self.solid_objects.append(SolidObject(self.images['siege'], (850, 650), (140, 120), 4))
 
             #self.deco_objects.append(DecoObject(self.images['os'], (800, 400), (50, 80), 120))
-            self.deco_objects.append(DecoObject(self.images['train_circuit'], (600, 0), (150, 150), 80))
-            self.deco_objects.append(DecoObject(self.images['train'], (720, 40), (100, 80), 50))
-            self.deco_objects.append(DecoObject(self.images['locomotive'], (620, 85), (50, 50), 90))
+            self.deco_objects.append(DecoObject(self.images['train_circuit'], (600 + 100, 0), (150, 150), 80))
+            self.deco_objects.append(DecoObject(self.images['train'], (720 + 100, 40), (100, 80), 50))
+            self.deco_objects.append(DecoObject(self.images['locomotive'], (620 + 100, 85), (50, 50), 90))
 
-            self.lamp((600, 400), (100, 100), 0)
+            self.lamp((210, 550), (100, 100), 0)
 
             self.interactive_objects.append(InteractiveObject(self.images['os'], (800, 400), (50, 80), 120,
                 "this is an os", "Crazy Insane...", "...Insane Crazy !"))
@@ -100,19 +103,21 @@ class Objects(pygame.sprite.Sprite):
                 'os': pygame.image.load("assets/props/neg/deco/os.png"),
                 'train': pygame.image.load("assets/props/neg/deco/train.png"),
                 'locomotive': pygame.image.load("assets/props/neg/deco/locomotive.png"),
-                'train_circuit': pygame.image.load("assets/props/neg/deco/train_circuit.png")
+                'train_circuit': pygame.image.load("assets/props/neg/deco/train_circuit.png"),
+                'bed': pygame.image.load("assets/props/neg/solid/lit_neg.png"),
+                'bed_table': pygame.image.load("assets/props/neg/solid/table_de_nuit_neg.png")
             }
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 200), (140, 120), -95))
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 400), (140, 120), -85))
             self.solid_objects.append(SolidObject(self.images['siege'], (850, 650), (140, 120), 184))
 
-            self.deco_objects.append(DecoObject(self.images['train_circuit'], (600, 0), (150, 150), 80))
-            self.deco_objects.append(DecoObject(self.images['train'], (720, 40), (100, 80), 50))
-            self.deco_objects.append(DecoObject(self.images['locomotive'], (705, 50), (50, 50), 257))
+            self.deco_objects.append(DecoObject(self.images['train_circuit'], (600 + 100, 0), (150, 150), 80))
+            self.deco_objects.append(DecoObject(self.images['train'], (720 + 100, 40), (100, 80), 50))
+            self.deco_objects.append(DecoObject(self.images['locomotive'], (705 + 100, 50), (50, 50), 257))
 
             self.deco_objects.append(DecoObject(self.images['os'], (800, 400), (50, 80), 120))
 
-            self.lamp((600, 400), (100, 100), 0)
+            self.lamp((210, 550), (100, 100), 0)
 
             self.interactive_objects.append(InteractiveObject(self.images['os'], (800, 400), (50, 80), 120,
                 "this is an os", "Crazy Insane...", "...Insane Crazy !"))

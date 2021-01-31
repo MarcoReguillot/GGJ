@@ -58,8 +58,6 @@ class Map(pygame.sprite.Sprite):
         self.Rect_white.append(pygame.Rect(3615, -2073, 1200, 308))
         self.little_white_out = pygame.transform.scale(pygame.image.load('assets/white.jpg'), (308, 900))
         self.Rect_white.append(pygame.Rect(4815, -373, 308, 900))
-        self.button = pygame.image.load('assets/props/bouton.png')
-        self.rect_button = pygame.Rect(5000, 77, 39, 24)
 
         #black
         self.Rect_black = []
@@ -157,8 +155,6 @@ class Map(pygame.sprite.Sprite):
         self.make_room_w(20, x, y, screen, self.little_white_6_3, space, 3615, -2073, 1200, 308)
         self.make_room_w(21, x, y, screen, self.little_white_out, space, 4715, -373, 308, 900)
         self.rect_button = pygame.Rect(5000 - x, 77 - y, 39, 24)
-        if space == 1:
-            screen.blit(pygame.transform.rotate(self.button, -90), (5000 - x, 77 - y))
 
     def child(self, x, y, screen, space):
         if space == 0:
