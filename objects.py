@@ -84,7 +84,12 @@ class Objects(pygame.sprite.Sprite):
                 'bed_table': pygame.image.load("assets/props/pos/solid/table_de_nuit_pos.png"),
                 'bed+table': pygame.image.load("assets/props/pos/solid/lit.png"),
                 'armoire': pygame.image.load("assets/props/pos/solid/armoire.png"),
-                'kitchen': pygame.image.load("assets/props/pos/solid/cuisine.png")
+                'kitchen': pygame.image.load("assets/props/pos/solid/cuisine.png"),
+                'table_01': pygame.image.load("assets/props/pos/solid/table_01.png"),
+                'table_02': pygame.image.load("assets/props/pos/solid/table_02.png"),
+                'table_03': pygame.image.load("assets/props/pos/solid/table_02.png"),
+                'table': pygame.image.load("assets/props/pos/solid/table.png"),
+                'chaise': pygame.image.load("assets/props/pos/solid/chaise.png")
             }
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 200), (140, 120), -95))
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 400), (140, 120), -85))
@@ -129,12 +134,18 @@ class Objects(pygame.sprite.Sprite):
             self.solid_objects.append(SolidObject(self.images['armoire'], (1080, 2585), (310, 120), 180))
             self.solid_objects.append(SolidObject(self.images['armoire'], (1530, 2585), (310, 120), 180))
 
+            self.solid_objects.append(SolidObject(self.images['siege'], (2400, 150), (140, 120), -180))
+
+            self.solid_objects.append(SolidObject(self.images['siege'], (2700, 350), (140, 120), 3))
+            self.solid_objects.append(SolidObject(self.images['siege'], (3000, 350), (140, 120), -10))
+
             self.solid_objects.append(SolidObject(self.images['kitchen'], (900, 3495), (820, 484), 0))
             self.solid_objects.append(SolidObject(self.images['kitchen'], (-400, 3495), (820, 484), 0))
             for x in range(7):
                 for y in range(2):
-                    self.solid_objects.append(SolidObject(self.images['bed_table'],
-                        (-500 + x * 350, 2850 + y * 330), (210, 145), random.randint(-6, 6)))
+                    n = random.randint(1, 3)
+                    self.solid_objects.append(SolidObject(self.images['table_0' + str(n)],
+                        (-500 + x * 350, 2850 + y * 330), (210, 190), random.randint(-6, 6) + 180))
 
             self.solid_objects.append(SolidObject(self.images['bed'], (300, -89), (160, 260), 0))
             self.solid_objects.append(SolidObject(self.images['bed_table'], (228, -85), (60, 70), 9))
@@ -157,7 +168,12 @@ class Objects(pygame.sprite.Sprite):
                 'bed_table': pygame.image.load("assets/props/neg/solid/table_de_nuit_neg.png"),
                 'bed+table': pygame.image.load("assets/props/neg/solid/lit_neg.png"),
                 'armoire': pygame.image.load("assets/props/neg/solid/armoire.png"),
-                'kitchen': pygame.image.load("assets/props/neg/solid/cuisine.png")
+                'kitchen': pygame.image.load("assets/props/neg/solid/cuisine.png"),
+                'table_01': pygame.image.load("assets/props/neg/solid/table_01.png"),
+                'table_02': pygame.image.load("assets/props/neg/solid/table_02.png"),
+                'table_03': pygame.image.load("assets/props/neg/solid/table_02.png"),
+                'table': pygame.image.load("assets/props/neg/solid/table.png"),
+                'chaise': pygame.image.load("assets/props/neg/solid/chaise.png")
             }
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 200), (140, 120), -95))
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 400), (140, 120), -85))
@@ -178,8 +194,9 @@ class Objects(pygame.sprite.Sprite):
             self.solid_objects.append(SolidObject(self.images['kitchen'], (-400, 3495), (820, 484), 0))
             for x in range(7):
                 for y in range(2):
-                    self.solid_objects.append(SolidObject(self.images['bed_table'],
-                        (-500 + x * 350, 2850 + y * 330), (210, 145), random.randint(-6, 6)))
+                    n = random.randint(1, 3)
+                    self.solid_objects.append(SolidObject(self.images['table_0' + str(n)],
+                        (-500 + x * 350, 2850 + y * 330), (210, 190), random.randint(-6, 6) + 180))
 
             self.solid_objects.append(SolidObject(self.images['bed'], (300, -89), (160, 260), 0))
             self.solid_objects.append(SolidObject(self.images['bed_table'], (228, -85), (60, 70), 9))
@@ -221,7 +238,6 @@ class Objects(pygame.sprite.Sprite):
 
             self.interactive_objects.append(InteractiveObject(self.images['os'], (800, 400), (50, 80), 120,
                 "this is an os", "Crazy Insane...", "...Insane Crazy !"))
-
     def update(self, screen, player):
         for i in self.deco_objects:
             i.update(screen, player)

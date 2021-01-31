@@ -110,6 +110,7 @@ def game():
     pygame.mouse.set_visible(False)
     while running:
         clock.tick(90)
+        game_fps = clock.get_fps()
         screen.fill((0, 0, 0))
         event()
         maps.child(player.x, player.y, screen, space)
@@ -120,8 +121,9 @@ def game():
         else:
             player.handle_collisions(maps.Rect_white, objects_light)
             objects_light.update(screen, player)
-        player.update(screen, clock.get_fps())
-        hud.update(screen, space, clock.get_fps())
+        if (game_fps > 0):
+            player.update(screen, game_fps)
+            hud.update(screen, space, game_fps)
         pygame.display.flip()
 
 game()
