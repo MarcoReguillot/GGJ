@@ -41,6 +41,8 @@ class HudText(pygame.sprite.Sprite):
         self.moment = 3
 
     def hide_text(self):
+        if self.text == "This button seems to lead to the":
+            exit (0)
         self.display_script = False
 
     def update(self, screen, space, clock):
