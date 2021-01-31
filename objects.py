@@ -95,6 +95,8 @@ class Objects(pygame.sprite.Sprite):
 
             self.interactive_objects.append(InteractiveObject(self.images['os'], (800, 400), (50, 80), 120,
                 "this is an os", "Crazy Insane...", "...Insane Crazy !"))
+            self.interactive_objects.append(InteractiveObject(self.images['button'], (5000, 77), (39, 24), -90,
+                "This button seems to lead to the", "exit", ""))
         else:
             self.images = {
                 'siege': pygame.image.load("assets/props/neg/solid/siege.png"),
@@ -121,6 +123,7 @@ class Objects(pygame.sprite.Sprite):
 
             self.interactive_objects.append(InteractiveObject(self.images['os'], (800, 400), (50, 80), 120,
                 "this is an os", "Crazy Insane...", "...Insane Crazy !"))
+
     def update(self, screen, player):
         for i in self.deco_objects:
             i.update(screen, player)
