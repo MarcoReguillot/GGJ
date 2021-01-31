@@ -107,13 +107,6 @@ class Objects(pygame.sprite.Sprite):
             #room 12
             self.solid_objects.append(SolidObject(self.images['armoire'], (-2570, 632), (310, 200), -90))
 
-            #room 14
-            self.interactive_objects.append(InteractiveObject(self.images['armoire'], (-3040, -3213), (200, 100), 0,
-                "The cabinet is stuck ...", "it seems difficult to turn it", ""))
-            self.solid_objects.append(SolidObject(self.images['armoire'], (-3040, -3213), (200, 100), 0))
-            self.solid_objects.append(SolidObject(self.images['siege'], (-2740, -3213), (150, 100), 180))
-
-            #room 16
             self.interactive_objects.append(InteractiveObject(self.images['train_circuit'], (-2900, 1500), (150, 150), 80,
                 "Someone played here..", "", ""))
             self.deco_objects.append(DecoObject(self.images['train'], (-2780, 1540), (100, 80), 50))
@@ -126,6 +119,10 @@ class Objects(pygame.sprite.Sprite):
 
             self.lamp((210, 550), (100, 100), 0)
 
+            self.solid_objects.append(SolidObject(self.images['bed'], (300, -89), (160, 260), 0))
+            self.solid_objects.append(SolidObject(self.images['bed_table'], (228, -85), (60, 70), 9))
+            self.solid_objects.append(SolidObject(self.images['armoire'], (985, 250), (200, 100), 90))
+
             self.solid_objects.append(SolidObject(self.images['armoire'], (1080, 2585), (310, 120), 180))
             self.solid_objects.append(SolidObject(self.images['armoire'], (1530, 2585), (310, 120), 180))
 
@@ -135,10 +132,6 @@ class Objects(pygame.sprite.Sprite):
                 for y in range(2):
                     self.solid_objects.append(SolidObject(self.images['bed_table'],
                         (-500 + x * 350, 2850 + y * 330), (210, 145), random.randint(-6, 6)))
-
-            self.solid_objects.append(SolidObject(self.images['bed'], (300, -89), (160, 260), 0))
-            self.solid_objects.append(SolidObject(self.images['bed_table'], (228, -85), (60, 70), 9))
-            self.solid_objects.append(SolidObject(self.images['armoire'], (985, 250), (200, 100), 90))
 
             self.interactive_objects.append(InteractiveObject(self.images['os'], (800, 400), (50, 80), 120,
                 "this is an os", "Crazy Insane...", "...Insane Crazy !"))
@@ -170,6 +163,10 @@ class Objects(pygame.sprite.Sprite):
             self.deco_objects.append(DecoObject(self.images['os'], (800, 400), (50, 80), 120))
 
             self.lamp((210, 550), (100, 100), 0)
+
+
+            self.solid_objects.append(SolidObject(self.images['armoire'], (1080, 2585), (310, 120), 180))
+            self.solid_objects.append(SolidObject(self.images['armoire'], (1530, 2585), (310, 120), 180))
 
             self.lamp((1700, 150), (100, 100), 0)
             self.lamp((1700, 390), (100, 100), 0)
@@ -207,14 +204,6 @@ class Objects(pygame.sprite.Sprite):
             self.deco_objects.append(DecoObject(self.images['os'], (-1436, 1184), (50, 80), 98))
             self.interactive_objects.append(InteractiveObject(self.images['os'], (-1434, 1220), (50, 80), -7,
                 "It's weird..", "", ""))
-
-            #room 14
-            self.solid_objects.append(SolidObject(self.images['armoire'], (-3040, -3213), (200, 100), 180))
-            self.interactive_objects.append(InteractiveObject(self.images['armoire'], (-3040, -3213), (200, 100), 180,
-                "There are plenty of clothes.", "Different sizes..", ""))
-            self.solid_objects.append(SolidObject(self.images['siege'], (-2740, -3213), (150, 100), 180))
-            self.interactive_objects.append(InteractiveObject(self.images['os'], (-2720, -3170), (50, 80), 180,
-                "Someone died here", "", "..."))
 
             self.solid_objects.append(SolidObject(self.images['armoire'], (-2900, 702), (310, 200), -45))
             self.deco_objects.append(DecoObject(self.images['os'], (-2900, 1500), (50, 80), -7))

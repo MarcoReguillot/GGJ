@@ -105,12 +105,13 @@ class Player(pygame.sprite.Sprite):
         #    print("ok")
         #else:
         #    print("pas ok")
-        if ((self.actual_speed[0] < 0 and not self.collision_left(map, objects)) or
-            (self.actual_speed[0] > 0 and not self.collision_right(map, objects))):
-            self.x += self.actual_speed[0] * (50 / self.clock)
-        if ((self.actual_speed[1] < 0 and not self.collision_up(map, objects)) or
-            (self.actual_speed[1] > 0 and not self.collision_down(map, objects))):
-            self.y += self.actual_speed[1] * (50 / self.clock)
+        if (self.clock > 0):
+            if ((self.actual_speed[0] < 0 and not self.collision_left(map, objects)) or
+                (self.actual_speed[0] > 0 and not self.collision_right(map, objects))):
+                self.x += self.actual_speed[0] * (50 / self.clock)
+            if ((self.actual_speed[1] < 0 and not self.collision_up(map, objects)) or
+                (self.actual_speed[1] > 0 and not self.collision_down(map, objects))):
+                self.y += self.actual_speed[1] * (50 / self.clock)
 
     def update_animation(self):
         if (self.actual_speed[0] == 0 and self.actual_speed[1] == 0):
@@ -127,6 +128,8 @@ class Player(pygame.sprite.Sprite):
 
     def update(self, screen, clock):
         self.clock = clock
+        if (self.clock <= 0):
+            return
         self.rect = self.animation[0].get_rect()
         self.rect.x = (1280 - self.rect.width) / 2
         self.rect.y = (720 - self.rect.height) / 2
