@@ -19,7 +19,7 @@ clock = pygame.time.Clock()
 space = 1
 
 #game screen generation
-pygame.display.set_caption('')
+pygame.display.set_caption('Surrender')
 size = width, height = 1280, 720
 screen = pygame.display.set_mode((size))
 icon = pygame.image.load('assets/icon.png')

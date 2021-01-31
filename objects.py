@@ -81,6 +81,7 @@ class Objects(pygame.sprite.Sprite):
                 'button': pygame.image.load("assets/props/pos/interactive/button.png"),
                 'bed': pygame.image.load("assets/props/pos/solid/lit_pos.png"),
                 'bed_table': pygame.image.load("assets/props/pos/solid/table_de_nuit_pos.png"),
+                'bed+table': pygame.image.load("assets/props/pos/solid/lit.png"),
                 'armoire': pygame.image.load("assets/props/pos/solid/armoire.png")
             }
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 200), (140, 120), -95))
@@ -88,11 +89,16 @@ class Objects(pygame.sprite.Sprite):
             self.solid_objects.append(SolidObject(self.images['siege'], (850, 650), (140, 120), 4))
 
             #room 15
-            self.solid_objects.append(SolidObject(self.images['bed'], (-1930, 350), (153, 170), 0))
-            self.solid_objects.append(SolidObject(self.images['bed'], (-1740, 350), (153, 170), 0))
-            self.solid_objects.append(SolidObject(self.images['bed'], (-1540, 350), (153, 170), 0))
-            self.solid_objects.append(SolidObject(self.images['bed'], (-1340, 350), (153, 170), 0))
-            self.solid_objects.append(SolidObject(self.images['bed'], (-1140, 350), (153, 170), 0))
+            self.solid_objects.append(SolidObject(self.images['bed+table'], (-1930, 350), (153, 170), 0))
+            self.lamp((-1830, 350), (50, 50), 0)
+            self.solid_objects.append(SolidObject(self.images['bed+table'], (-1740, 350), (153, 170), 0))
+            self.lamp((-1640, 350), (50, 50), 0)
+            self.solid_objects.append(SolidObject(self.images['bed+table'], (-1540, 350), (153, 170), 0))
+            self.lamp((-1440, 350), (50, 50), 0)
+            self.solid_objects.append(SolidObject(self.images['bed+table'], (-1340, 350), (153, 170), 0))
+            self.lamp((-1240, 350), (50, 50), 0)
+            self.solid_objects.append(SolidObject(self.images['bed+table'], (-1140, 350), (153, 170), 0))
+            self.lamp((-1040, 350), (50, 50), 0)
             self.solid_objects.append(SolidObject(self.images['siege'], (-1940, 1640), (100, 67), -45))
             self.solid_objects.append(SolidObject(self.images['siege'], (-1110, 1640), (100, 67), 45))
 
@@ -122,6 +128,7 @@ class Objects(pygame.sprite.Sprite):
                 'train_circuit': pygame.image.load("assets/props/neg/deco/train_circuit.png"),
                 'bed': pygame.image.load("assets/props/neg/solid/lit.png"),
                 'bed_table': pygame.image.load("assets/props/neg/solid/table_de_nuit_neg.png"),
+                'bed+table': pygame.image.load("assets/props/neg/solid/lit_neg.png"),
                 'armoire': pygame.image.load("assets/props/neg/solid/armoire.png")
             }
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 200), (140, 120), -95))
@@ -139,6 +146,12 @@ class Objects(pygame.sprite.Sprite):
             self.solid_objects.append(SolidObject(self.images['bed'], (300, -89), (160, 260), 0))
             self.solid_objects.append(SolidObject(self.images['bed_table'], (228, -85), (60, 70), 9))
             self.solid_objects.append(SolidObject(self.images['armoire'], (960, 405), (200, 100), 83))
+
+            self.solid_objects.append(SolidObject(self.images['bed+table'], (-1930, 350), (153, 170), 0))
+            self.solid_objects.append(SolidObject(self.images['bed+table'], (-1740, 350), (153, 170), 0))
+            self.solid_objects.append(SolidObject(self.images['bed+table'], (-1540, 350), (153, 170), 0))
+            self.solid_objects.append(SolidObject(self.images['bed+table'], (-1340, 350), (153, 170), 0))
+            self.solid_objects.append(SolidObject(self.images['bed+table'], (-1140, 350), (153, 170), 0))
 
             #tas d'os 15
             self.deco_objects.append(DecoObject(self.images['os'], (-1440, 1200), (50, 80), 120))
