@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # -*- coding: cp1252 -*-
 from os import environ
 environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
