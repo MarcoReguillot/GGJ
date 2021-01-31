@@ -74,13 +74,19 @@ class Objects(pygame.sprite.Sprite):
                 'siege': pygame.image.load("assets/props/pos/solid/siege.png"),
                 'solid_lamp': pygame.image.load("assets/props/pos/solid/lamp.png"),
                 'deco_lamp': pygame.image.load("assets/props/pos/deco/lamp.png"),
-                'os': pygame.image.load("assets/props/pos/deco/os.png")
+                'os': pygame.image.load("assets/props/pos/deco/os.png"),
+                'train': pygame.image.load("assets/props/pos/deco/train.png"),
+                'locomotive': pygame.image.load("assets/props/pos/deco/locomotive.png"),
+                'train_circuit': pygame.image.load("assets/props/pos/deco/train_circuit.png")
             }
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 200), (140, 120), -95))
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 400), (140, 120), -85))
             self.solid_objects.append(SolidObject(self.images['siege'], (850, 650), (140, 120), 4))
 
             #self.deco_objects.append(DecoObject(self.images['os'], (800, 400), (50, 80), 120))
+            self.deco_objects.append(DecoObject(self.images['train_circuit'], (600, 0), (150, 150), 80))
+            self.deco_objects.append(DecoObject(self.images['train'], (720, 40), (100, 80), 50))
+            self.deco_objects.append(DecoObject(self.images['locomotive'], (620, 85), (50, 50), 90))
 
             self.lamp((600, 400), (100, 100), 0)
 
@@ -91,11 +97,18 @@ class Objects(pygame.sprite.Sprite):
                 'siege': pygame.image.load("assets/props/neg/solid/siege.png"),
                 'solid_lamp': pygame.image.load("assets/props/neg/solid/lamp.png"),
                 'deco_lamp': pygame.image.load("assets/props/neg/deco/lamp.png"),
-                'os': pygame.image.load("assets/props/neg/deco/os.png")
+                'os': pygame.image.load("assets/props/neg/deco/os.png"),
+                'train': pygame.image.load("assets/props/neg/deco/train.png"),
+                'locomotive': pygame.image.load("assets/props/neg/deco/locomotive.png"),
+                'train_circuit': pygame.image.load("assets/props/neg/deco/train_circuit.png")
             }
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 200), (140, 120), -95))
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 400), (140, 120), -85))
             self.solid_objects.append(SolidObject(self.images['siege'], (850, 650), (140, 120), 184))
+
+            self.deco_objects.append(DecoObject(self.images['train_circuit'], (600, 0), (150, 150), 80))
+            self.deco_objects.append(DecoObject(self.images['train'], (720, 40), (100, 80), 50))
+            self.deco_objects.append(DecoObject(self.images['locomotive'], (705, 50), (50, 50), 257))
 
             self.deco_objects.append(DecoObject(self.images['os'], (800, 400), (50, 80), 120))
 
