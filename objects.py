@@ -87,6 +87,15 @@ class Objects(pygame.sprite.Sprite):
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 400), (140, 120), -85))
             self.solid_objects.append(SolidObject(self.images['siege'], (850, 650), (140, 120), 4))
 
+            #room 15
+            self.solid_objects.append(SolidObject(self.images['bed'], (-1930, 350), (153, 170), 0))
+            self.solid_objects.append(SolidObject(self.images['bed'], (-1740, 350), (153, 170), 0))
+            self.solid_objects.append(SolidObject(self.images['bed'], (-1540, 350), (153, 170), 0))
+            self.solid_objects.append(SolidObject(self.images['bed'], (-1340, 350), (153, 170), 0))
+            self.solid_objects.append(SolidObject(self.images['bed'], (-1140, 350), (153, 170), 0))
+            self.solid_objects.append(SolidObject(self.images['siege'], (-1940, 1640), (100, 67), -45))
+            self.solid_objects.append(SolidObject(self.images['siege'], (-1110, 1640), (100, 67), 45))
+
             #self.deco_objects.append(DecoObject(self.images['os'], (800, 400), (50, 80), 120))
             self.deco_objects.append(DecoObject(self.images['train_circuit'], (600 + 100, 0), (150, 150), 80))
             self.deco_objects.append(DecoObject(self.images['train'], (720 + 100, 40), (100, 80), 50))
@@ -130,6 +139,22 @@ class Objects(pygame.sprite.Sprite):
             self.solid_objects.append(SolidObject(self.images['bed'], (300, -89), (160, 260), 0))
             self.solid_objects.append(SolidObject(self.images['bed_table'], (228, -85), (60, 70), 9))
             self.solid_objects.append(SolidObject(self.images['armoire'], (960, 405), (200, 100), 83))
+
+            #tas d'os 15
+            self.deco_objects.append(DecoObject(self.images['os'], (-1440, 1200), (50, 80), 120))
+            self.deco_objects.append(DecoObject(self.images['os'], (-1442, 1200), (50, 80), 80))
+            self.deco_objects.append(DecoObject(self.images['os'], (-1443, 1201), (50, 80), 30))
+            self.deco_objects.append(DecoObject(self.images['os'], (-1440, 1198), (50, 80), -43))
+            self.deco_objects.append(DecoObject(self.images['os'], (-1441, 1201), (50, 80), 0))
+            self.deco_objects.append(DecoObject(self.images['os'], (-1439, 1199), (50, 80), 105))
+            self.deco_objects.append(DecoObject(self.images['os'], (-1439, 1200), (50, 80), -78))
+            self.deco_objects.append(DecoObject(self.images['os'], (-1444, 1207), (50, 80), 3))
+            self.deco_objects.append(DecoObject(self.images['os'], (-1442, 1213), (50, 80), -32))
+            self.deco_objects.append(DecoObject(self.images['os'], (-1446, 129), (50, 80), -76))
+            self.deco_objects.append(DecoObject(self.images['os'], (-1444, 1183), (50, 80), 165))
+            self.deco_objects.append(DecoObject(self.images['os'], (-1444, 1212), (50, 80), -178))
+            self.deco_objects.append(DecoObject(self.images['os'], (-1436, 1184), (50, 80), 98))
+            self.deco_objects.append(DecoObject(self.images['os'], (-1434, 1220), (50, 80), -7))
 
             self.interactive_objects.append(InteractiveObject(self.images['os'], (800, 400), (50, 80), 120,
                 "this is an os", "Crazy Insane...", "...Insane Crazy !"))

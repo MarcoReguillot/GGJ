@@ -107,6 +107,7 @@ def event():
 def game():
     if menu(screen) == 1:
         return (0)
+    pygame.mouse.set_visible(False)
     while running:
         clock.tick(90)
         screen.fill((0, 0, 0))
