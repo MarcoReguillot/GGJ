@@ -102,6 +102,14 @@ class Objects(pygame.sprite.Sprite):
             self.solid_objects.append(SolidObject(self.images['siege'], (-1940, 1640), (100, 67), -45))
             self.solid_objects.append(SolidObject(self.images['siege'], (-1110, 1640), (100, 67), 45))
 
+            #room 12
+            self.solid_objects.append(SolidObject(self.images['armoire'], (-2570, 632), (310, 200), -90))
+
+            self.interactive_objects.append(InteractiveObject(self.images['train_circuit'], (-2900, 1500), (150, 150), 80,
+                "Someone played here..", "", ""))
+            self.deco_objects.append(DecoObject(self.images['train'], (-2780, 1540), (100, 80), 50))
+            self.deco_objects.append(DecoObject(self.images['locomotive'], (-2880, 1585), (50, 50), 90))
+
             #self.deco_objects.append(DecoObject(self.images['os'], (800, 400), (50, 80), 120))
             self.deco_objects.append(DecoObject(self.images['train_circuit'], (600 + 100, 0), (150, 150), 80))
             self.deco_objects.append(DecoObject(self.images['train'], (720 + 100, 40), (100, 80), 50))
@@ -167,7 +175,11 @@ class Objects(pygame.sprite.Sprite):
             self.deco_objects.append(DecoObject(self.images['os'], (-1444, 1183), (50, 80), 165))
             self.deco_objects.append(DecoObject(self.images['os'], (-1444, 1212), (50, 80), -178))
             self.deco_objects.append(DecoObject(self.images['os'], (-1436, 1184), (50, 80), 98))
-            self.deco_objects.append(DecoObject(self.images['os'], (-1434, 1220), (50, 80), -7))
+            self.interactive_objects.append(InteractiveObject(self.images['os'], (-1434, 1220), (50, 80), -7,
+                "It's weird..", "", ""))
+
+            self.solid_objects.append(SolidObject(self.images['armoire'], (-2900, 702), (310, 200), -45))
+            self.deco_objects.append(DecoObject(self.images['os'], (-2900, 1500), (50, 80), -7))
 
             self.interactive_objects.append(InteractiveObject(self.images['os'], (800, 400), (50, 80), 120,
                 "this is an os", "Crazy Insane...", "...Insane Crazy !"))
