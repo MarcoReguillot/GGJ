@@ -38,7 +38,7 @@ class Map(pygame.sprite.Sprite):
         self.Rect_white.append(pygame.Rect(-3240, -3213, 1954, 1233))
         self.little_white_7 = pygame.transform.scale(pygame.image.load('assets/white.jpg'), (1300, 308))
         self.Rect_white.append(pygame.Rect(2073, 160, 1300, 308))
-        self.little_white_13 = pygame.transform.scale(pygame.image.load('assets/white.jpg'), (873, 873))
+        self.little_white_13 = pygame.transform.scale(pygame.image.load('assets/white.jpg'), (740, 873))
         self.Rect_white.append(pygame.Rect(200, -2892, 740, 873))
         self.little_white_9 = pygame.transform.scale(pygame.image.load('assets/white.jpg'), (1686, 308))
         self.Rect_white.append(pygame.Rect(-1286, -3000, 1686, 308))
@@ -58,6 +58,8 @@ class Map(pygame.sprite.Sprite):
         self.Rect_white.append(pygame.Rect(3615, -2073, 1200, 308))
         self.little_white_out = pygame.transform.scale(pygame.image.load('assets/white.jpg'), (308, 900))
         self.Rect_white.append(pygame.Rect(4815, -373, 308, 900))
+        self.button = pygame.image.load('assets/props/bouton.png')
+        self.rect_button = pygame.Rect(5000, 77, 39, 24)
 
         #black
         self.Rect_black = []
@@ -125,11 +127,8 @@ class Map(pygame.sprite.Sprite):
             screen.blit(image, (left - x, top - y))
 
     def make_room_b(self, room_nb, x, y, screen, image, space, left, top, width, height):
-        stair = 0
-        if image == "self.stair" and space == 0:
-            stair == 1
         self.Rect_black[room_nb] = pygame.Rect(left - x, top - y, width, height)
-        if self.in_the_screen(self.Rect_black[room_nb]) == 1 and space == 0 or stair == 1:
+        if self.in_the_screen(self.Rect_black[room_nb]) == 1 and space == 0:
             screen.blit(image, (left - x, top - y))
 
     def old(self, x, y, screen, space):
@@ -157,6 +156,9 @@ class Map(pygame.sprite.Sprite):
         self.make_room_w(19, x, y, screen, self.little_white_6_2, space, 3515, -3173, 308, 1900)
         self.make_room_w(20, x, y, screen, self.little_white_6_3, space, 3615, -2073, 1200, 308)
         self.make_room_w(21, x, y, screen, self.little_white_out, space, 4715, -373, 308, 900)
+        self.rect_button = pygame.Rect(5000 - x, 77 - y, 39, 24)
+        if space == 1:
+            screen.blit(pygame.transform.rotate(self.button, -90), (5000 - x, 77 - y))
 
     def child(self, x, y, screen, space):
         if space == 0:
