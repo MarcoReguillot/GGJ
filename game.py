@@ -40,7 +40,7 @@ hud = HudText()
 hud.render_text("Press [SPACE].", "", "")
 
 #Sound
-ost = pygame.mixer.Sound('assets/ost.wav')
+ost = pygame.mixer.Sound('assets/ost.ogg')
 ost.set_volume(0.2)
 ost.play(loops = -1, maxtime = 0, fade_ms = 0)
 
