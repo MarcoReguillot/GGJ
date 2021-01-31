@@ -81,6 +81,7 @@ class Objects(pygame.sprite.Sprite):
                 'button': pygame.image.load("assets/props/pos/interactive/button.png"),
                 'bed': pygame.image.load("assets/props/pos/solid/lit_pos.png"),
                 'bed_table': pygame.image.load("assets/props/pos/solid/table_de_nuit_pos.png"),
+                'armoire': pygame.image.load("assets/props/pos/solid/armoire.png")
             }
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 200), (140, 120), -95))
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 400), (140, 120), -85))
@@ -92,6 +93,10 @@ class Objects(pygame.sprite.Sprite):
             self.deco_objects.append(DecoObject(self.images['locomotive'], (620 + 100, 85), (50, 50), 90))
 
             self.lamp((210, 550), (100, 100), 0)
+
+            self.solid_objects.append(SolidObject(self.images['bed'], (300, -89), (160, 260), 0))
+            self.solid_objects.append(SolidObject(self.images['bed_table'], (228, -85), (60, 70), 9))
+            self.solid_objects.append(SolidObject(self.images['armoire'], (985, 250), (200, 100), 90))
 
             self.interactive_objects.append(InteractiveObject(self.images['os'], (800, 400), (50, 80), 120,
                 "this is an os", "Crazy Insane...", "...Insane Crazy !"))
@@ -106,8 +111,9 @@ class Objects(pygame.sprite.Sprite):
                 'train': pygame.image.load("assets/props/neg/deco/train.png"),
                 'locomotive': pygame.image.load("assets/props/neg/deco/locomotive.png"),
                 'train_circuit': pygame.image.load("assets/props/neg/deco/train_circuit.png"),
-                'bed': pygame.image.load("assets/props/neg/solid/lit_neg.png"),
-                'bed_table': pygame.image.load("assets/props/neg/solid/table_de_nuit_neg.png")
+                'bed': pygame.image.load("assets/props/neg/solid/lit.png"),
+                'bed_table': pygame.image.load("assets/props/neg/solid/table_de_nuit_neg.png"),
+                'armoire': pygame.image.load("assets/props/neg/solid/armoire.png")
             }
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 200), (140, 120), -95))
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 400), (140, 120), -85))
@@ -120,6 +126,10 @@ class Objects(pygame.sprite.Sprite):
             self.deco_objects.append(DecoObject(self.images['os'], (800, 400), (50, 80), 120))
 
             self.lamp((210, 550), (100, 100), 0)
+
+            self.solid_objects.append(SolidObject(self.images['bed'], (300, -89), (160, 260), 0))
+            self.solid_objects.append(SolidObject(self.images['bed_table'], (228, -85), (60, 70), 9))
+            self.solid_objects.append(SolidObject(self.images['armoire'], (960, 405), (200, 100), 83))
 
             self.interactive_objects.append(InteractiveObject(self.images['os'], (800, 400), (50, 80), 120,
                 "this is an os", "Crazy Insane...", "...Insane Crazy !"))
