@@ -56,6 +56,8 @@ class Map(pygame.sprite.Sprite):
         self.Rect_white.append(pygame.Rect(3515, -3173, 308, 1900))
         self.little_white_6_3 = pygame.transform.scale(pygame.image.load('assets/white.jpg'), (1200, 308))
         self.Rect_white.append(pygame.Rect(3615, -2073, 1200, 308))
+        self.little_white_out = pygame.transform.scale(pygame.image.load('assets/white.jpg'), (308, 900))
+        self.Rect_white.append(pygame.Rect(4815, -373, 308, 900))
 
         #black
         self.Rect_black = []
@@ -154,6 +156,7 @@ class Map(pygame.sprite.Sprite):
         self.make_room_w(18, x, y, screen, self.little_white_6_1, space, 2915, -3173, 1200, 308)
         self.make_room_w(19, x, y, screen, self.little_white_6_2, space, 3515, -3173, 308, 1900)
         self.make_room_w(20, x, y, screen, self.little_white_6_3, space, 3615, -2073, 1200, 308)
+        self.make_room_w(21, x, y, screen, self.little_white_out, space, 4715, -373, 308, 900)
 
     def child(self, x, y, screen, space):
         if space == 0:
