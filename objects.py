@@ -175,7 +175,9 @@ class Objects(pygame.sprite.Sprite):
                 'table_02': pygame.image.load("assets/props/neg/solid/table_02.png"),
                 'table_03': pygame.image.load("assets/props/neg/solid/table_02.png"),
                 'table': pygame.image.load("assets/props/neg/solid/table.png"),
-                'chaise': pygame.image.load("assets/props/neg/solid/chaise.png")
+                'chaise': pygame.image.load("assets/props/neg/solid/chaise.png"),
+                'tv': pygame.image.load("assets/props/neg/solid/télé_salle.png"),
+                'light': pygame.image.load("assets/props/neg/solid/télé_salle_light.png")
             }
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 200), (140, 120), -95))
             self.solid_objects.append(SolidObject(self.images['siege'], (200, 400), (140, 120), -85))
@@ -250,6 +252,12 @@ class Objects(pygame.sprite.Sprite):
 
             self.interactive_objects.append(InteractiveObject(self.images['os'], (800, 400), (50, 80), 120,
                 "this is an os", "Crazy Insane...", "...Insane Crazy !"))
+            
+            #room 2
+            self.solid_objects.append(SolidObject(self.images['siege'], (-3000, 4700), (150, 100), 0))
+            self.solid_objects.append(SolidObject(self.images['light'], (-3150, 4300), (452, 152), 0))
+            self.solid_objects.append(SolidObject(self.images['tv'], (-3150, 4230), (452, 152), 0))
+
     def update(self, screen, player):
         for i in self.deco_objects:
             i.update(screen, player)
